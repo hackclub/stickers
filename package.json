@@ -21,6 +21,7 @@
 		"vite": "^7.2.2"
 	},
 	"dependencies": {
+		"bootstrap": "^5.3.8",
 		"flubber": "^0.4.2"
 	}
 }

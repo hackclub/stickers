@@ -1,0 +1,17 @@
+@font-face {
+  font-family: 'Departure Mono';
+  src: url('$lib/assets/fonts/DepartureMono-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+body {
+  font-family: 'Departure Mono', monospace;
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6, p, a, li, span, button, input, label {
+  font-family: 'Departure Mono', monospace;
+}

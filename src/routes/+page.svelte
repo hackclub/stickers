@@ -1,16 +1,44 @@
 <script>
   import Peelable from '$lib/components/Peelable.svelte';
+  import Background from '$lib/components/Background.svelte';
+  import hackClubLogo from '$lib/assets/images/hackClub.png';
+
+  let logoTransform = $state('');
+
+  function handleLogoMouseMove(e) {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width - 0.5;
+    const y = (e.clientY - rect.top) / rect.height - 0.5;
+    const rotateY = x * 20;
+    const rotateX = -y * 20;
+    logoTransform = `perspective(500px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+  }
+
+  function handleLogoMouseLeave() {
+    logoTransform = '';
+  }
 
   function handleLogin() {
     
-    window.location.href = '/login';
+    window.location.href = '/dash';
   }
 </script>
 
+<Background />
+
 <div class="container">
-  <h1>Stickers</h1>
+  <h1>
+    <img 
+      class="title-logo" 
+      src={hackClubLogo} 
+      alt="Stickers!"
+      style:transform={logoTransform}
+      onmousemove={handleLogoMouseMove}
+      onmouseleave={handleLogoMouseLeave}
+    >
+  </h1>
   
-  <p>Manage everything sticky! Get free stickers for signing up, hack or trade to earn rare stickers and certify your collection.</p> 
+  <p>Manage everything sticky! Get free stickers for signing up, hack or trade to earn rare stickers and certify your collection</p> 
     
 
   <Peelable 
@@ -31,11 +59,11 @@
   {/snippet}
   {#snippet bottomContent()}
     <div class="sticker-surface">
-      <span></span>
+      <span style="color: black; font-size: 2xrem;">Loading...</span>
     </div>
   {/snippet}
   </Peelable>
-  <p>*footer joke here</p>
+  <p>*with Hack Club</p>
 </div>
 
 <style>
@@ -47,29 +75,44 @@
     font-display: swap;
   }
 
+  :global(html, body) {
+    overflow: hidden;
+    height: 100%;
+  }
+
   .container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    min-height: 100vh;
+    justify-content: flex-start;
+    height: 100vh;
     text-align: center;
     font-family: 'Departure Mono', monospace;
-    padding: 2rem;
-    background: #eeeeee;
+    padding: 0 2rem 2rem 2rem;
+    background: transparent;
+    overflow: hidden;
   }
 
   h1 {
     font-size: 10rem;
-    margin-bottom: 1rem;
+    margin: -20px 0 1rem 0;
     font-weight: 400;
+  }
+
+  .title-logo {
+    max-width: 100%;
+    height: auto;
+    transition: transform 0.15s ease-out;
+    transform-style: preserve-3d;
   }
 
   p {
     font-size: 2rem;
     max-width: 60vw;
     margin: 0.5rem 0;
-    opacity: 0.8;
+    background: rgba(250, 248, 245, 0.9);
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
   }
   :global(.login-sticker) {
     width: clamp(150px, 20vw, 650px);

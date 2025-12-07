@@ -1,0 +1,551 @@
+.bg-image-8 {
+  position: absolute;
+  width: 604px;
+  height: 616px;
+  background: url('./backgrounds-assets/image%208.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  filter: drop-shadow(10px 10px 4px #000000);
+  transform: rotate(16.1deg);
+}
+
+.bg-image-2 {
+  position: absolute;
+  width: 831px;
+  height: 512px;
+  background: url('./backgrounds-assets/image%202.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  filter: drop-shadow(10px 10px 4px #000000);
+}
+
+.bg-image-1 {
+  position: absolute;
+  width: 492px;
+  height: 616px;
+  background: url('./backgrounds-assets/image%201.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  filter: drop-shadow(10px 10px 4px #000000);
+}
+
+.bg-image-3 {
+  position: absolute;
+  width: 704px;
+  height: 377px;
+  background: url('./backgrounds-assets/image%203.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  filter: drop-shadow(10px 10px 4px #000000);
+  transform: rotate(10.07deg);
+}
+
+.bg-image-4 {
+  position: absolute;
+  width: 500px;
+  height: 616px;
+  background: url('./backgrounds-assets/image%204.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  filter: drop-shadow(10px 10px 4px #000000);
+}
+
+.bg-image-5 {
+  position: absolute;
+  width: 467px;
+  height: 596px;
+  background: url('./backgrounds-assets/image%205.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  filter: drop-shadow(10px 10px 4px #000000);
+  transform: rotate(-6.94deg);
+}
+
+.bg-image-10 {
+  position: absolute;
+  width: 474px;
+  height: 528px;
+  background: url('./backgrounds-assets/image%2010.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  filter: drop-shadow(10px 10px 4px #000000);
+}
+
+.bg-image-14 {
+  position: absolute;
+  width: 639px;
+  height: 439px;
+  background: url('./backgrounds-assets/image%2014.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  filter: drop-shadow(10px 10px 4px #000000);
+  transform: rotate(-13.19deg);
+}
+
+.bg-image-15 {
+  position: absolute;
+  width: 788px;
+  height: 788px;
+  background: url('./backgrounds-assets/image%2015.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  filter: drop-shadow(10px 10px 4px #000000);
+}
+
+.bg-image-16 {
+  position: absolute;
+  width: 978px;
+  height: 1304px;
+  background: url('./backgrounds-assets/image%2016.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  filter: drop-shadow(10px 10px 4px #000000);
+}
+
+.bg-image-17 {
+  position: absolute;
+  width: 1029.07px;
+  height: 1455.63px;
+  background: url('./backgrounds-assets/image%2017.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  filter: drop-shadow(10px 10px 4px #000000);
+  transform: rotate(3.69deg);
+}
+
+.bg-image-18 {
+  position: absolute;
+  width: 571.25px;
+  height: 856.88px;
+  background: url('./backgrounds-assets/image%2018.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  filter: drop-shadow(10px 10px 4px #000000);
+  transform: rotate(6.2deg);
+}
+
+.bg-image-20 {
+  position: absolute;
+  width: 604px;
+  height: 616px;
+  background: url('./backgrounds-assets/image%2020.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  filter: drop-shadow(10px 10px 4px #000000);
+  transform: rotate(16.1deg);
+}
+
+.bg-image-21 {
+  position: absolute;
+  width: 831px;
+  height: 512px;
+  background: url('./backgrounds-assets/image%2021.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  filter: drop-shadow(10px 10px 4px #000000);
+}
+
+.bg-image-22 {
+  position: absolute;
+  width: 492px;
+  height: 616px;
+  background: url('./backgrounds-assets/image%2022.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  filter: drop-shadow(10px 10px 4px #000000);
+}
+
+.bg-image-23 {
+  position: absolute;
+  width: 704px;
+  height: 377px;
+  background: url('./backgrounds-assets/image%2023.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  filter: drop-shadow(10px 10px 4px #000000);
+  transform: rotate(10.07deg);
+}
+
+.bg-image-29 {
+  position: absolute;
+  width: 474px;
+  height: 528px;
+  background: url('./backgrounds-assets/image%2029.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  filter: drop-shadow(10px 10px 4px #000000);
+}
+
+.bg-image-31 {
+  position: absolute;
+  width: 639px;
+  height: 439px;
+  background: url('./backgrounds-assets/image%2031.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  filter: drop-shadow(10px 10px 4px #000000);
+  transform: rotate(-13.19deg);
+}
+
+.bg-image-33 {
+  position: absolute;
+  width: 978px;
+  height: 1304px;
+  background: url('./backgrounds-assets/image%2033.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  filter: drop-shadow(10px 10px 4px #000000);
+}
+
+.bg-image-34 {
+  position: absolute;
+  width: 1029.07px;
+  height: 1455.63px;
+  background: url('./backgrounds-assets/image%2034.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  filter: drop-shadow(10px 10px 4px #000000);
+  transform: rotate(3.69deg);
+}
+
+.bg-image-35 {
+  position: absolute;
+  width: 571.25px;
+  height: 856.88px;
+  background: url('./backgrounds-assets/image%2035.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  filter: drop-shadow(10px 10px 4px #000000);
+  transform: rotate(6.2deg);
+}
+
+.bg-image-37 {
+  position: absolute;
+  width: 604px;
+  height: 616px;
+  background: url('./backgrounds-assets/image%2037.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  filter: drop-shadow(10px 10px 4px #000000);
+  transform: rotate(16.1deg);
+}
+
+.bg-image-38 {
+  position: absolute;
+  width: 831px;
+  height: 512px;
+  background: url('./backgrounds-assets/image%2038.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  filter: drop-shadow(10px 10px 4px #000000);
+}
+
+.bg-image-39 {
+  position: absolute;
+  width: 492px;
+  height: 616px;
+  background: url('./backgrounds-assets/image%2039.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  filter: drop-shadow(10px 10px 4px #000000);
+}
+
+.bg-image-40 {
+  position: absolute;
+  width: 704px;
+  height: 377px;
+  background: url('./backgrounds-assets/image%2040.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  filter: drop-shadow(10px 10px 4px #000000);
+  transform: rotate(10.07deg);
+}
+
+.bg-image-41 {
+  position: absolute;
+  width: 500px;
+  height: 616px;
+  background: url('./backgrounds-assets/image%2041.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  filter: drop-shadow(10px 10px 4px #000000);
+}
+
+.bg-image-42 {
+  position: absolute;
+  width: 760px;
+  height: 664px;
+  background: url('./backgrounds-assets/image%2042.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  filter: drop-shadow(10px 10px 4px #000000);
+}
+
+.bg-image-43 {
+  position: absolute;
+  width: 467px;
+  height: 596px;
+  background: url('./backgrounds-assets/image%2043.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  filter: drop-shadow(10px 10px 4px #000000);
+  transform: rotate(-6.94deg);
+}
+
+.bg-image-44 {
+  position: absolute;
+  width: 616px;
+  height: 540px;
+  background: url('./backgrounds-assets/image%2044.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  filter: drop-shadow(10px 10px 4px #000000);
+}
+
+.bg-image-46 {
+  position: absolute;
+  width: 474px;
+  height: 528px;
+  background: url('./backgrounds-assets/image%2046.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  filter: drop-shadow(10px 10px 4px #000000);
+}
+
+.bg-image-47 {
+  position: absolute;
+  width: 639px;
+  height: 439px;
+  background: url('./backgrounds-assets/image%2047.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  filter: drop-shadow(10px 10px 4px #000000);
+}
+
+.bg-image-48 {
+  position: absolute;
+  width: 639px;
+  height: 439px;
+  background: url('./backgrounds-assets/image%2048.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  filter: drop-shadow(10px 10px 4px #000000);
+  transform: rotate(-13.19deg);
+}
+
+.bg-image-49 {
+  position: absolute;
+  width: 788px;
+  height: 788px;
+  background: url('./backgrounds-assets/image%2049.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  filter: drop-shadow(10px 10px 4px #000000);
+}
+
+.bg-image-50 {
+  position: absolute;
+  width: 978px;
+  height: 1304px;
+  background: url('./backgrounds-assets/image%2050.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  filter: drop-shadow(10px 10px 4px #000000);
+}
+
+.bg-image-51 {
+  position: absolute;
+  width: 1029.07px;
+  height: 1455.63px;
+  background: url('./backgrounds-assets/image%2051.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  filter: drop-shadow(10px 10px 4px #000000);
+  transform: rotate(3.69deg);
+}
+
+.bg-image-53 {
+  position: absolute;
+  width: 989px;
+  height: 1399px;
+  background: url('./backgrounds-assets/image%2053.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  filter: drop-shadow(10px 10px 4px #000000);
+}
+
+.bg-image-54 {
+  position: absolute;
+  width: 604px;
+  height: 616px;
+  background: url('./backgrounds-assets/image%2054.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  filter: drop-shadow(10px 10px 4px #000000);
+  transform: rotate(16.1deg);
+}
+
+.bg-image-55 {
+  position: absolute;
+  width: 831px;
+  height: 512px;
+  background: url('./backgrounds-assets/image%2055.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  filter: drop-shadow(10px 10px 4px #000000);
+}
+
+.bg-image-56 {
+  position: absolute;
+  width: 492px;
+  height: 616px;
+  background: url('./backgrounds-assets/image%2056.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  filter: drop-shadow(10px 10px 4px #000000);
+}
+
+.bg-image-57 {
+  position: absolute;
+  width: 704px;
+  height: 377px;
+  background: url('./backgrounds-assets/image%2057.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  filter: drop-shadow(10px 10px 4px #000000);
+  transform: rotate(10.07deg);
+}
+
+.bg-image-58 {
+  position: absolute;
+  width: 500px;
+  height: 616px;
+  background: url('./backgrounds-assets/image%2058.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  filter: drop-shadow(10px 10px 4px #000000);
+}
+
+.bg-image-59 {
+  position: absolute;
+  width: 760px;
+  height: 664px;
+  background: url('./backgrounds-assets/image%2059.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  filter: drop-shadow(10px 10px 4px #000000);
+}
+
+.bg-image-60 {
+  position: absolute;
+  width: 467px;
+  height: 596px;
+  background: url('./backgrounds-assets/image%2060.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  filter: drop-shadow(10px 10px 4px #000000);
+  transform: rotate(-6.94deg);
+}
+
+.bg-image-61 {
+  position: absolute;
+  width: 616px;
+  height: 540px;
+  background: url('./backgrounds-assets/image%2061.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  filter: drop-shadow(10px 10px 4px #000000);
+}
+
+.bg-image-62 {
+  position: absolute;
+  width: 557px;
+  height: 557px;
+  background: url('./backgrounds-assets/image%2062.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  filter: drop-shadow(10px 10px 4px #000000);
+}
+
+.bg-image-63 {
+  position: absolute;
+  width: 474px;
+  height: 528px;
+  background: url('./backgrounds-assets/image%2063.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  filter: drop-shadow(10px 10px 4px #000000);
+}
+
+.bg-image-64 {
+  position: absolute;
+  width: 639px;
+  height: 439px;
+  background: url('./backgrounds-assets/image%2064.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  filter: drop-shadow(10px 10px 4px #000000);
+}
+
+.bg-image-65 {
+  position: absolute;
+  width: 639px;
+  height: 439px;
+  background: url('./backgrounds-assets/image%2065.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  filter: drop-shadow(10px 10px 4px #000000);
+  transform: rotate(-13.19deg);
+}
+
+.bg-image-66 {
+  position: absolute;
+  width: 788px;
+  height: 788px;
+  background: url('./backgrounds-assets/image%2066.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  filter: drop-shadow(10px 10px 4px #000000);
+}
+
+.bg-image-67 {
+  position: absolute;
+  width: 978px;
+  height: 1304px;
+  background: url('./backgrounds-assets/image%2067.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  filter: drop-shadow(10px 10px 4px #000000);
+}
+
+.bg-image-68 {
+  position: absolute;
+  width: 1029.07px;
+  height: 1455.63px;
+  background: url('./backgrounds-assets/image%2068.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  filter: drop-shadow(10px 10px 4px #000000);
+  transform: rotate(3.69deg);
+}
+
+.bg-image-69 {
+  position: absolute;
+  width: 571.25px;
+  height: 856.88px;
+  background: url('./backgrounds-assets/image%2069.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  filter: drop-shadow(10px 10px 4px #000000);
+  transform: rotate(6.2deg);
+}
+
+.bg-image-70 {
+  position: absolute;
+  width: 989px;
+  height: 1399px;
+  background: url('./backgrounds-assets/image%2070.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  filter: drop-shadow(10px 10px 4px #000000);
+}
