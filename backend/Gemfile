@@ -20,6 +20,4 @@ gem 'rack', '~> 3.2'
 
 gem 'omniauth'
 gem 'omniauth_openid_connect'
-gem 'omniauth-oauth2'
 gem 'rack-session'
-gem 'faraday'

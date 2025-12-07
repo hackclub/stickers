@@ -8,7 +8,6 @@ require 'grape'
 require 'rack/session'
 require 'omniauth'
 require 'omniauth_openid_connect'
-require 'omniauth-oauth2'
 
 use Rack::Session::Cookie,
     key: 'stickers.session',
@@ -31,17 +30,6 @@ use OmniAuth::Builder do
              scheme: 'https'
            },
            scope: %i[openid email profile name address]
-
-  provider :oauth2,
-           ENV.fetch('HACKATIME_CLIENT_ID'),
-           ENV.fetch('HACKATIME_CLIENT_SECRET'),
-           name: :hackatime,
-           scope: 'read',
-           client_options: {
-             site: 'https://hackatime.hackclub.com',
-             authorize_url: '/oauth/authorize',
-             token_url: '/oauth/token'
-           }
 end
 
 run lambda { |env|
