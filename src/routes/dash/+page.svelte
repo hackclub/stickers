@@ -1,6 +1,18 @@
 <script>
   import Peelable from '$lib/components/Peelable.svelte';
   import stickersBg from '$lib/assets/images/stickers.jpg';
+
+  function goToTrade() {
+    window.location.href = '/trade';
+  }
+
+  function goToEarn() {
+    window.location.href = '/earn';
+  }
+
+  function goToVote() {
+    window.location.href = '/vote';
+  }
 </script>
 
 <div class="layout">
@@ -15,10 +27,12 @@
         corner="bottom-right"
         peelOnHover={true}
         hoverPeelAmount={0.3}
+        peelOnClick={true}
+        onPeelComplete={goToTrade}
         borderRadius="0.5rem"
       >
         {#snippet topContent()}
-          <div class="sticker-btn">Open</div>
+          <div class="sticker-btn">Trade</div>
         {/snippet}
         {#snippet backContent()}
           <div class="sticker-back"></div>
@@ -36,6 +50,8 @@
         corner="bottom-right"
         peelOnHover={true}
         hoverPeelAmount={0.3}
+        peelOnClick={true}
+        onPeelComplete={goToEarn}
         borderRadius="0.5rem"
       >
         {#snippet topContent()}
@@ -57,6 +73,8 @@
         corner="bottom-right"
         peelOnHover={true}
         hoverPeelAmount={0.3}
+        peelOnClick={true}
+        onPeelComplete={goToVote}
         borderRadius="0.5rem"
       >
         {#snippet topContent()}
@@ -85,7 +103,7 @@
     </div>
     <div class="canvas" style="background-image: url({stickersBg});">
       <div class="empty-overlay">
-        <b><u>No stickers placed!</u></b>
+        <b><u>No stickers placed!</u></b><br>X stickers owned.
       </div>
     </div>
   </div>
