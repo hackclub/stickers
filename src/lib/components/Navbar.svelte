@@ -25,6 +25,9 @@
       <li class="nav-item" class:active={active === 'leaderboard'}>
         <a class="nav-link" href="/leaderboard">Leaderboard |</a>
       </li>
+      <li class="nav-item" class:active={active === 'designs'}>
+        <a class="nav-link" href="/designs">Designs |</a>
+      </li>
     </ul>
   </div>
 </nav>
