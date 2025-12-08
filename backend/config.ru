@@ -8,14 +8,6 @@ require 'grape'
 require 'rack/session'
 require 'omniauth'
 require 'omniauth_openid_connect'
-require 'rack/cors'
-
-use Rack::Cors do
-  allow do
-    origins 'http://localhost:5173', 'http://localhost:4173'
-    resource '*', headers: :any, methods: [:get, :post, :put, :patch, :delete, :options]
-  end
-end
 
 use Rack::Session::Cookie,
     key: 'stickers.session',
