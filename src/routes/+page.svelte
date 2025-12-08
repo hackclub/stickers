@@ -19,8 +19,7 @@
   }
 
   function handleLogin() {
-    
-    window.location.href = '/dash';
+    window.location.href = 'http://localhost:9292/auth/login';
   }
 </script>
 

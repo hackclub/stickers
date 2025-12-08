@@ -1,9 +1,9 @@
 
-<h1><mark>Hack For Stickers</mark></h1>
+<h1><mark>Vote</mark></h1>
 
 <div class="content-row">
   <div class="card info-card">
-    <p>You can uh get free stickers or ship 10 hours for a monthly crate of cool ones valid for 6 months! Link ur hackatime or smth...</p>
+    <p>Voting will be open in [time]! Right now please take a look at the current submissions. Remember the highest voted design will be produced and shipped.</p>
   </div>
 </div>
 <style>

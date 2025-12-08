@@ -11,7 +11,7 @@
 </svelte:head>
 
 <Background />
-<Navbar active="earn" />
+<Navbar active="stickers" />
 
 <div class="page-content">
   {@render children()}
