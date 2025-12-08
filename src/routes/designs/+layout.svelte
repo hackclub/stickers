@@ -11,7 +11,7 @@
 </svelte:head>
 
 <Background />
-<Navbar active="my-designs" />
+<Navbar active="designs" />
 
 <div class="page-content">
   {@render children()}

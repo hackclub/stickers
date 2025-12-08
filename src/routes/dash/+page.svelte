@@ -150,12 +150,10 @@
         corner="bottom-right"
         peelOnHover={true}
         hoverPeelAmount={0.3}
-        peelOnClick={true}
-        onPeelComplete={goToTrade}
         borderRadius="0.5rem"
       >
         {#snippet topContent()}
-          <div class="sticker-btn">Trade</div>
+          <div class="sticker-btn">Open</div>
         {/snippet}
         {#snippet backContent()}
           <div class="sticker-back"></div>
@@ -173,8 +171,6 @@
         corner="bottom-right"
         peelOnHover={true}
         hoverPeelAmount={0.3}
-        peelOnClick={true}
-        onPeelComplete={goToEarn}
         borderRadius="0.5rem"
       >
         {#snippet topContent()}
@@ -196,8 +192,6 @@
         corner="bottom-right"
         peelOnHover={true}
         hoverPeelAmount={0.3}
-        peelOnClick={true}
-        onPeelComplete={goToVote}
         borderRadius="0.5rem"
       >
         {#snippet topContent()}
@@ -226,7 +220,7 @@
     </div>
     <div class="canvas" style="background-image: url({stickersBg});">
       <div class="empty-overlay">
-        <b><u>No stickers placed!</u></b><br>X stickers owned.
+        <b><u>No stickers placed!</u></b>
       </div>
     </div>
   </div>
