@@ -140,6 +140,9 @@ GEM
     puma (7.1.0)
       nio4r (~> 2.0)
     rack (3.2.4)
+    rack-cors (3.0.0)
+      logger
+      rack (>= 3.0.14)
     rack-oauth2 (2.3.0)
       activesupport
       attr_required
@@ -188,6 +191,7 @@ DEPENDENCIES
   omniauth_openid_connect
   puma (~> 7.1)
   rack (~> 3.2)
+  rack-cors
   rack-session
   rackup
   zeitwerk (~> 2.6)

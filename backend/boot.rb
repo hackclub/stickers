@@ -9,7 +9,7 @@ require 'grape'
 
 Dotenv.load
 
-Norairrecord.api_key = ENV['AIRTABLE_PAT']
+Norairrecord.api_key = ENV['AIRTABLE_API_KEY']
 
 loader = Zeitwerk::Loader.new
 loader.push_dir("#{__dir__}/models")

@@ -1,36 +1,31 @@
 <script>
+  import { onMount } from 'svelte';
+
   let selectedFilter = $state('all');
   let searchQuery = $state('');
   let expandedId = $state(null);
+  let stickers = $state([]);
+  let loading = $state(true);
+  let error = $state(null);
 
-  const mockDesigns = [
-    { id: 1, designUrl: 'https://hc-cdn.hel1.your-objectstorage.com/s/v3/3d9f704b3a59ae5109d4fb1d2ca76fac0b6c917d_image.png', name: 'Boba Drops', inStock: 150, price: 2, program: 'Boba Drops', created: '??', artist: 'MSW', tags: ['current'], width: 100, height: 100 },
-    { id: 2, designUrl: 'https://hc-cdn.hel1.your-objectstorage.com/s/v3/3d9f704b3a59ae5109d4fb1d2ca76fac0b6c917d_image.png', name: 'Boba Drops', inStock: 150, price: 2, program: 'Boba Drops', created: '??', artist: 'MSW', tags: ['current'], width: 100, height: 100 },
-    { id: 3, designUrl: 'https://hc-cdn.hel1.your-objectstorage.com/s/v3/3d9f704b3a59ae5109d4fb1d2ca76fac0b6c917d_image.png', name: 'Boba Drops', inStock: 150, price: 2, program: 'Boba Drops', created: '??', artist: 'MSW', tags: ['current'], width: 100, height: 100 },
-    { id: 4, designUrl: 'https://hc-cdn.hel1.your-objectstorage.com/s/v3/3d9f704b3a59ae5109d4fb1d2ca76fac0b6c917d_image.png', name: 'Boba Drops', inStock: 150, price: 2, program: 'Boba Drops', created: '??', artist: 'MSW', tags: ['current'], width: 100, height: 100 },
-    { id: 5, designUrl: 'https://hc-cdn.hel1.your-objectstorage.com/s/v3/3d9f704b3a59ae5109d4fb1d2ca76fac0b6c917d_image.png', name: 'Boba Drops', inStock: 150, price: 2, program: 'Boba Drops', created: '??', artist: 'MSW', tags: ['current'], width: 100, height: 100 },
-    { id: 6, designUrl: 'https://hc-cdn.hel1.your-objectstorage.com/s/v3/3d9f704b3a59ae5109d4fb1d2ca76fac0b6c917d_image.png', name: 'Boba Drops', inStock: 150, price: 2, program: 'Boba Drops', created: '??', artist: 'MSW', tags: ['current'], width: 100, height: 100 },
-    { id: 7, designUrl: 'https://hc-cdn.hel1.your-objectstorage.com/s/v3/3d9f704b3a59ae5109d4fb1d2ca76fac0b6c917d_image.png', name: 'Boba Drops', inStock: 150, price: 2, program: 'Boba Drops', created: '??', artist: 'MSW', tags: ['current'], width: 100, height: 100 },
-    { id: 8, designUrl: 'https://hc-cdn.hel1.your-objectstorage.com/s/v3/3d9f704b3a59ae5109d4fb1d2ca76fac0b6c917d_image.png', name: 'Boba Drops', inStock: 150, price: 2, program: 'Boba Drops', created: '??', artist: 'MSW', tags: ['current'], width: 100, height: 100 },
-    { id: 9, designUrl: 'https://hc-cdn.hel1.your-objectstorage.com/s/v3/3d9f704b3a59ae5109d4fb1d2ca76fac0b6c917d_image.png', name: 'Boba Drops', inStock: 150, price: 2, program: 'Boba Drops', created: '??', artist: 'MSW', tags: ['current'], width: 100, height: 100 },
-    { id: 10, designUrl: 'https://hc-cdn.hel1.your-objectstorage.com/s/v3/3d9f704b3a59ae5109d4fb1d2ca76fac0b6c917d_image.png', name: 'Boba Drops', inStock: 150, price: 2, program: 'Boba Drops', created: '??', artist: 'MSW', tags: ['current'], width: 100, height: 100 },
-    { id: 11, designUrl: 'https://hc-cdn.hel1.your-objectstorage.com/s/v3/3d9f704b3a59ae5109d4fb1d2ca76fac0b6c917d_image.png', name: 'Boba Drops', inStock: 150, price: 2, program: 'Boba Drops', created: '??', artist: 'MSW', tags: ['current'], width: 100, height: 100 },
-    { id: 12, designUrl: 'https://hc-cdn.hel1.your-objectstorage.com/s/v3/3d9f704b3a59ae5109d4fb1d2ca76fac0b6c917d_image.png', name: 'Boba Drops', inStock: 150, price: 2, program: 'Boba Drops', created: '??', artist: 'MSW', tags: ['current'], width: 100, height: 100 },
-    { id: 13, designUrl: 'https://hc-cdn.hel1.your-objectstorage.com/s/v3/3d9f704b3a59ae5109d4fb1d2ca76fac0b6c917d_image.png', name: 'Boba Drops', inStock: 150, price: 2, program: 'Boba Drops', created: '??', artist: 'MSW', tags: ['current'], width: 100, height: 100 },
-    { id: 14, designUrl: 'https://hc-cdn.hel1.your-objectstorage.com/s/v3/3d9f704b3a59ae5109d4fb1d2ca76fac0b6c917d_image.png', name: 'Boba Drops', inStock: 150, price: 2, program: 'Boba Drops', created: '??', artist: 'MSW', tags: ['current'], width: 100, height: 100 },
-    { id: 15, designUrl: 'https://hc-cdn.hel1.your-objectstorage.com/s/v3/3d9f704b3a59ae5109d4fb1d2ca76fac0b6c917d_image.png', name: 'Boba Drops', inStock: 150, price: 2, program: 'Boba Drops', created: '??', artist: 'MSW', tags: ['current'], width: 100, height: 100 },
-    { id: 16, designUrl: 'https://hc-cdn.hel1.your-objectstorage.com/s/v3/3d9f704b3a59ae5109d4fb1d2ca76fac0b6c917d_image.png', name: 'Boba Drops', inStock: 150, price: 2, program: 'Boba Drops', created: '??', artist: 'MSW', tags: ['current'], width: 100, height: 100 },
-    { id: 17, designUrl: 'https://hc-cdn.hel1.your-objectstorage.com/s/v3/3d9f704b3a59ae5109d4fb1d2ca76fac0b6c917d_image.png', name: 'Boba Drops', inStock: 150, price: 2, program: 'Boba Drops', created: '??', artist: 'MSW', tags: ['current'], width: 100, height: 100 }
-  ];
+  onMount(async () => {
+    try {
+      const res = await fetch('http://localhost:9292/stickers');
+      if (!res.ok) throw new Error('Failed to fetch stickers');
+      stickers = await res.json();
+    } catch (e) {
+      error = e.message;
+    } finally {
+      loading = false;
+    }
+  });
 
   const filteredDesigns = $derived(
-    mockDesigns.filter(d => {
+    stickers.filter(d => {
       const matchesSearch = searchQuery === '' || 
-        d.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        d.artist.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        d.program.toLowerCase().includes(searchQuery.toLowerCase());
+        (d.name?.toLowerCase().includes(searchQuery.toLowerCase()));
       
-      const matchesFilter = selectedFilter === 'all' || d.tags.includes(selectedFilter);
+      const matchesFilter = selectedFilter === 'all' || (d.tags && d.tags.includes(selectedFilter));
       
       return matchesSearch && matchesFilter;
     })
@@ -68,58 +63,48 @@
   </div>
 </div>
 
-<div class="panels-grid">
-  {#each filteredDesigns as design}
-    <div 
-      class="panel" 
-      class:expanded={expandedId === design.id}
-      onclick={() => toggleExpand(design.id)}
-    >
-      <div class="panel-image">
-        <img src={design.designUrl} alt={design.name} />
-      </div>
-      <div class="panel-footer">
-        <span class="panel-name">{design.name}</span>
-        <span class="panel-artist">by {design.artist}</span>
-      </div>
-      {#if expandedId === design.id}
-        <div class="panel-details">
-          <div class="detail-row">
-            <span class="detail-label">Dimensions:</span>
-            <span>{design.width}mm × {design.height}mm</span>
-          </div>
-          <div class="detail-row">
-            <span class="detail-label">Program:</span>
-            <span>{design.program}</span>
-          </div>
-          <div class="detail-row">
-            <span class="detail-label">Created:</span>
-            <span>{design.created}</span>
-          </div>
-          <div class="detail-row">
-            <span class="detail-label">In Stock:</span>
-            <span class:out-of-stock={design.inStock === 0}>{design.inStock}</span>
-          </div>
-          <div class="detail-row">
-            <span class="detail-label">Price:</span>
-            <span>{design.price} hrs</span>
-          </div>
-          <div class="detail-row">
-            <span class="detail-label">Tags:</span>
-            <span class="tags">
-              {#each design.tags as tag}
-                <span class="tag tag-{tag}">{tag}</span>
-              {/each}
-            </span>
-          </div>
+{#if loading}
+  <div class="loading">Loading stickers...</div>
+{:else if error}
+  <div class="error">Error: {error}</div>
+{:else}
+  <div class="panels-grid">
+    {#each filteredDesigns as design}
+      <div 
+        class="panel" 
+        class:expanded={expandedId === design.id}
+        onclick={() => toggleExpand(design.id)}
+      >
+        <div class="panel-image">
+          <img src={design.image} alt={design.name} />
         </div>
-      {/if}
-    </div>
-  {/each}
-</div>
+        <div class="panel-footer">
+          <span class="panel-name">{design.name}</span>
+          {#if design.artist}
+            <span class="panel-artist">by {design.artist}</span>
+          {/if}
+        </div>
+        {#if expandedId === design.id}
+          <div class="panel-details">
+            {#if design.event}
+              <div class="detail-row">
+                <span class="detail-label">Event:</span>
+                <span>{design.event}</span>
+              </div>
+            {/if}
+            <div class="detail-row">
+              <span class="detail-label">ID:</span>
+              <span>{design.id}</span>
+            </div>
+          </div>
+        {/if}
+      </div>
+    {/each}
+  </div>
 
-{#if filteredDesigns.length === 0}
-  <div class="no-results">No stickers found</div>
+  {#if filteredDesigns.length === 0}
+    <div class="no-results">No stickers found</div>
+  {/if}
 {/if}
 
 <style>
@@ -194,6 +179,19 @@
   mark {
     background-color: #d9c9b6;
     padding: 0 0.2rem;
+  }
+
+  .loading, .error {
+    text-align: center;
+    padding: 3rem;
+    background: rgba(255, 255, 255, 0.95);
+    border: 2px solid #333;
+    border-radius: 0.5rem;
+    font-size: 1.25rem;
+  }
+
+  .error {
+    color: #cc0000;
   }
 
   .panels-grid {
@@ -273,37 +271,6 @@
 
   .detail-label {
     font-weight: bold;
-  }
-
-  .out-of-stock {
-    color: #cc0000;
-  }
-
-  .tags {
-    display: flex;
-    gap: 0.5rem;
-  }
-
-  .tag {
-    padding: 0.25rem 0.5rem;
-    border-radius: 0.25rem;
-    font-size: 0.8rem;
-  }
-
-  .tag-current {
-    background: #c8f7c5;
-  }
-
-  .tag-old {
-    background: #d0d0d0;
-  }
-
-  .tag-special {
-    background: #fff3cd;
-  }
-
-  .tag-in-person {
-    background: #cce5ff;
   }
 
   .no-results {
