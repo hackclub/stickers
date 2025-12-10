@@ -5,14 +5,14 @@
       from: 'LFD',
       get: { name: 'Crow thing', img: 'https://hc-cdn.hel1.your-objectstorage.com/s/v3/d2edc2953c00399264ec0c9d93167794a1cb1867_image.png ', quantity: 2 },
       give: { name: 'FlavorTownRed', img: 'https://hc-cdn.hel1.your-objectstorage.com/s/v3/80c59fb29dd5a3fbffc1b2297b512ac8cbb719cb_IMG_5304.png', quantity: 1 },
-      message: "Yo midnight just wrapped and i have one billion left over stickers, would trade most things."
+      message: "I have loads of midnight stickers lets trade!"
     },
       {
       id: 1,
       from: 'LFD',
       get: { name: 'Crow thing', img: 'https://hc-cdn.hel1.your-objectstorage.com/s/v3/d2edc2953c00399264ec0c9d93167794a1cb1867_image.png ', quantity: 2 },
       give: { name: 'FlavorTownRed', img: 'https://hc-cdn.hel1.your-objectstorage.com/s/v3/80c59fb29dd5a3fbffc1b2297b512ac8cbb719cb_IMG_5304.png', quantity: 1 },
-      message: "Yo midnight just wrapped and i have one billion left over stickers, would trade most things."
+      message: "I have loads of midnight stickers lets trade!"
     }
   ];
 
