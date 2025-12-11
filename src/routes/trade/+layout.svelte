@@ -18,10 +18,22 @@
   <div class="page-content">
     {@render children()}
   </div>
+  <footer class="site-footer">
+    <b>THIS PAGE IS UNDER CONSTRUCTION</b>
+  </footer>
 </AuthGuard>
 
 <style>
   .page-content {
-    padding: 2rem;
+    padding: 2rem 4rem;
+    max-width: 1500px;
+    margin: 0 auto;
+  }
+  .site-footer {
+    background: #000000;
+    color: #ff0000;
+    text-align: center;
+    padding: 1rem;
+    font-size: 2rem;
   }
 </style>

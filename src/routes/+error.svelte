@@ -10,18 +10,11 @@
   <div class="error-container">
     <h1>404!</h1>
     <img src={errorImg} alt="404" class="error-image" />
-    <p>You aren't supposed to go here - Please go <a href="/dash">back</a></p>
+    <p>You aren't supposed to be here - Please go <a href="/dash">back</a></p>
   </div>
 </div>
 
 <style>
-  :global(html, body) {
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    height: 100%;
-  }
-
   .error-wrapper {
     height: 100vh;
     display: flex;
@@ -29,6 +22,7 @@
     justify-content: center;
     padding: 2rem;
     box-sizing: border-box;
+    overflow: hidden;
   }
 
   .error-container {
@@ -65,6 +59,6 @@
   }
 
   a:hover {
-    color: #666;
+    color: #000000;
   }
 </style>

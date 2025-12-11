@@ -7,11 +7,7 @@
     { rank: 3, username: 'LFD', totalStickers: 28, uniques: 18, rares: 3 },
     { rank: 4, username: 'Nora', totalStickers: 19, uniques: 15, rares: 3 },
     { rank: 5, username: 'Euan', totalStickers: 17, uniques: 16, rares: 3 },
-    { rank: 6, username: 'KittyCat', totalStickers: 15, uniques: 10, rares: 3 },
-    { rank: 7, username: 'AVD', totalStickers: 14, uniques: 14, rares: 2 },
-    { rank: 8, username: 'Neon', totalStickers: 12, uniques: 6, rares: 0 },
-    { rank: 9, username: 'Kartikey', totalStickers: 11, uniques: 10, rares: 0 },
-    { rank: 10, username: 'Jmeow', totalStickers: 9, uniques: 9, rares: 1 },
+
     { rank: 1192, username: 'You', totalStickers: 2, uniques: 2, rares: 0 }
   ];
 
@@ -104,7 +100,7 @@
   .content-row {
     display: flex;
     gap: 1.5rem;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     align-items: stretch;
   }
 
@@ -116,11 +112,12 @@
   }
 
   .info-card {
-    flex: 1;
+    flex: 1 1 300px;
   }
 
   .filter-card {
     display: flex;
+    flex-direction: row;
     align-items: center;
     gap: 0.75rem;
     flex: 0 0 auto;
@@ -144,7 +141,12 @@
   p {
     font-size: 1.5rem;
     margin: 0;
-    white-space: nowrap;
+  }
+
+  @media (max-width: 768px) {
+    .content-row {
+      flex-direction: column;
+    }
   }
 
   mark {

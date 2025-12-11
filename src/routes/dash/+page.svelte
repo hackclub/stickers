@@ -1,17 +1,21 @@
 <script>
-  import Peelable from '$lib/components/Peelable.svelte';
-  import stickersBg from '$lib/assets/images/stickers.jpg';
+  import Peelable from "$lib/components/Peelable.svelte";
+  import stickersBg from "$lib/assets/images/stickers.jpg";
 
   function goToTrade() {
-    window.location.href = '/trade';
+    window.location.href = "/trade";
   }
 
   function goToEarn() {
-    window.location.href = '/earn';
+    window.location.href = "/earn";
   }
 
   function goToVote() {
-    window.location.href = '/vote';
+    window.location.href = "/vote";
+  }
+
+  function goToStickers() {
+    window.location.href = "/stickers";
   }
 </script>
 
@@ -21,72 +25,74 @@
 
     <div class="cards">
       <div class="card">
-      <p>USER is looking for a sticker that you own! Are you open to trade?</p>
-      <Peelable
-        class="btn-sticker"
-        corner="bottom-right"
-        peelOnHover={true}
-        hoverPeelAmount={0.3}
-        peelOnClick={true}
-        onPeelComplete={goToTrade}
-        borderRadius="0.5rem"
-      >
-        {#snippet topContent()}
-          <div class="sticker-btn">Trade</div>
-        {/snippet}
-        {#snippet backContent()}
-          <div class="sticker-back"></div>
-        {/snippet}
-        {#snippet bottomContent()}
-          <div class="sticker-surface"></div>
-        {/snippet}
-      </Peelable>
-    </div>
+        <p>
+          USER is looking for a sticker that    own! Are you open to trade?
+        </p>
+        <Peelable
+          class="btn-sticker"
+          corner="bottom-right"
+          peelOnHover={true}
+          hoverPeelAmount={0.3}
+          peelOnClick={true}
+          onPeelComplete={goToTrade}
+          borderRadius="0.5rem"
+        >
+          {#snippet topContent()}
+            <div class="sticker-btn">Trade</div>
+          {/snippet}
+          {#snippet backContent()}
+            <div class="sticker-back"></div>
+          {/snippet}
+          {#snippet bottomContent()}
+            <div class="sticker-surface"></div>
+          {/snippet}
+        </Peelable>
+      </div>
 
-    <div class="card">
-      <p>STICKER is X% cheaper this week</p>
-      <Peelable 
-        class="btn-sticker"
-        corner="bottom-right"
-        peelOnHover={true}
-        hoverPeelAmount={0.3}
-        peelOnClick={true}
-        onPeelComplete={goToEarn}
-        borderRadius="0.5rem"
-      >
-        {#snippet topContent()}
-          <div class="sticker-btn">Shop</div>
-        {/snippet}
-        {#snippet backContent()}
-          <div class="sticker-back"></div>
-        {/snippet}
-        {#snippet bottomContent()}
-          <div class="sticker-surface"></div>
-        {/snippet}
-      </Peelable>
-    </div>
+      <div class="card">
+        <p>STICKER is X% cheaper this week</p>
+        <Peelable
+          class="btn-sticker"
+          corner="bottom-right"
+          peelOnHover={true}
+          hoverPeelAmount={0.3}
+          peelOnClick={true}
+          onPeelComplete={goToEarn}
+          borderRadius="0.5rem"
+        >
+          {#snippet topContent()}
+            <div class="sticker-btn">Shop</div>
+          {/snippet}
+          {#snippet backContent()}
+            <div class="sticker-back"></div>
+          {/snippet}
+          {#snippet bottomContent()}
+            <div class="sticker-surface"></div>
+          {/snippet}
+        </Peelable>
+      </div>
 
-    <div class="card">
-      <p>New sticker drop! Vote on the best option now!</p>
-      <Peelable 
-        class="btn-sticker"
-        corner="bottom-right"
-        peelOnHover={true}
-        hoverPeelAmount={0.3}
-        peelOnClick={true}
-        onPeelComplete={goToVote}
-        borderRadius="0.5rem"
-      >
-        {#snippet topContent()}
-          <div class="sticker-btn">Vote</div>
-        {/snippet}
-        {#snippet backContent()}
-          <div class="sticker-back"></div>
-        {/snippet}
-        {#snippet bottomContent()}
-          <div class="sticker-surface"></div>
-        {/snippet}
-      </Peelable>
+      <div class="card">
+        <p>New sticker drop! Vote on the best option now!</p>
+        <Peelable
+          class="btn-sticker"
+          corner="bottom-right"
+          peelOnHover={true}
+          hoverPeelAmount={0.3}
+          peelOnClick={true}
+          onPeelComplete={goToVote}
+          borderRadius="0.5rem"
+        >
+          {#snippet topContent()}
+            <div class="sticker-btn">Vote</div>
+          {/snippet}
+          {#snippet backContent()}
+            <div class="sticker-back"></div>
+          {/snippet}
+          {#snippet bottomContent()}
+            <div class="sticker-surface"></div>
+          {/snippet}
+        </Peelable>
       </div>
     </div>
   </div>
@@ -97,13 +103,13 @@
     <div class="right-header">
       <h1><mark>Your collection</mark></h1>
       <div class="button-group">
-        <button class="btn-left">Claim stickers</button>
+        <button class="btn-left" onclick={goToStickers}>Claim stickers</button>
         <button class="btn-right">Place stickers</button>
       </div>
     </div>
     <div class="canvas" style="background-image: url({stickersBg});">
       <div class="empty-overlay">
-        <b><u>No stickers placed!</u></b><br>X stickers owned.
+        <b><u>No stickers placed!</u></b><br />X stickers owned.
       </div>
     </div>
   </div>
@@ -115,18 +121,28 @@
     gap: 2rem;
     height: calc(100vh - 120px);
     overflow: hidden;
+    width: 100%;
+    box-sizing: border-box;
   }
 
   .left-column {
-    flex: 0 0 500px;
-    min-width: 500px;
-    overflow-y: auto;
+    flex: 0 0 350px;
+    overflow: hidden;
     padding-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
   }
 
   .cards {
     display: flex;
     flex-direction: column;
+    overflow-x: hidden;
+    overflow-y: auto;
+    flex: 1;
+    padding: 1rem;
+    border: 2px solid #333;
+    border-radius: 0.5rem;
+    background: rgba(255, 255, 255, 0.3);
   }
 
   .divider {
@@ -137,11 +153,12 @@
   }
 
   .right-column {
-    flex: 1;
+    flex: 1 1 auto;
     display: flex;
     flex-direction: column;
     min-width: 0;
     padding-bottom: 2rem;
+    overflow: hidden;
   }
 
   .canvas {
@@ -200,37 +217,41 @@
   p {
     font-size: 1.5rem;
     margin: 0 0 1rem 0;
+    font-family: 'Departure Mono', monospace;
   }
 
   :global(.btn-sticker) {
     width: 180px;
     height: 50px;
     cursor: pointer;
+    font-family: 'Departure Mono', monospace;
+    
   }
 
   .sticker-btn {
     width: 100%;
     height: 100%;
-    background: #444444;
+    background:#8bb1e3;
     border-radius: 0.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
     color: white;
     font-size: 1rem;
+    font-size: 1.4rem;
   }
 
   .sticker-back {
     width: 100%;
     height: 100%;
-    background: #d9c9b6;
+    background: #729abd;
     border-radius: 0.5rem;
   }
 
   .sticker-surface {
     width: 100%;
     height: 100%;
-    background: #d1a874;
+    background: #d9c9b6;
     border-radius: 0.5rem;
   }
 
@@ -239,7 +260,7 @@
     padding: 0 0.2rem;
   }
 
-  @media (max-width: 900px) {
+  @media (max-width: 1400px) {
     .layout {
       flex-direction: column;
       height: auto;
@@ -250,11 +271,13 @@
       flex: 0 0 auto;
       min-width: 0;
       max-width: 100%;
-      overflow-y: visible;
+      overflow: visible;
     }
 
     .right-column {
       padding-bottom: 2rem;
+      max-width: 100%;
+      min-width: 0;
     }
 
     .divider {

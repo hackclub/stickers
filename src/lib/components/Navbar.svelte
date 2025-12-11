@@ -1,5 +1,5 @@
 <script>
-  import hackClubLogo from '$lib/assets/images/hackClubLogo.svg';
+  import hackClubLogo from '$lib/assets/images/hackClubLogo.png';
   
   let { active = '' } = $props();
   let menuOpen = $state(false);
@@ -22,29 +22,29 @@
 
   <div class="navbar-collapse" class:open={menuOpen}>
     <ul class="navbar-nav">
-      <li class="nav-item" class:active={active === 'dash'}>
-        <a class="nav-link" href="/dash">|Home  ⠀</a>
-      </li>
-      <li class="nav-item" class:active={active === 'trade'}>
-        <a class="nav-link" href="/trade">|Trade  ⠀</a>
-      </li>
       <li class="nav-item" class:active={active === 'earn'}>
-        <a class="nav-link" href="/earn">|Get  ⠀</a>
+        <a class="nav-link" href="/earn">|Get ⠀</a>
       </li>
       <li class="nav-item" class:active={active === 'leaderboard'}>
-        <a class="nav-link" href="/leaderboard">|Leaderboard  ⠀</a>
+        <a class="nav-link" href="/leaderboard">|Leaderboard ⠀</a>
       </li>
       <li class="nav-item" class:active={active === 'stickers'}>
-        <a class="nav-link" href="/stickers">|Stickers  ⠀</a>
+        <a class="nav-link" href="/stickers">|Stickers ⠀</a>
       </li>
       <li class="nav-item" class:active={active === 'my-designs'}>
-        <a class="nav-link" href="/my-designs">|My  Designs  ⠀</a>
+        <a class="nav-link" href="/my-designs">|My Designs ⠀</a>
       </li>
       <li class="nav-item" class:active={active === 'vote'}>
-        <a class="nav-link" href="/vote">|Vote  ⠀</a>
+        <a class="nav-link" href="/vote">|Vote ⠀</a>
+      </li>
+      <!-- <li class="nav-item" class:active={active === 'trade'}>
+        <a class="nav-link disabled">|Trade (soon)</a>
+      </li>-->
+      <li class="nav-item logout">
+        <a class="nav-link" href="http://localhost:9292/auth/logout">|Logout ⠀</a>
       </li>
     </ul>
-    <span class="help-text">help us archive stickers! DM @EuanRipper or @Nora on slack</span>
+    <span class="help-text">Made with &lt;3 by Nora and Euan</span>
   </div>
 </nav>
 
@@ -121,6 +121,12 @@
     font-weight: bold;
     color: #666;
     white-space: nowrap;
+  }
+
+  @media (max-width: 1400px) {
+    .help-text {
+      display: none;
+    }
   }
 
   @media (max-width: 992px) {

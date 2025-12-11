@@ -18,10 +18,28 @@
   <div class="page-content">
     {@render children()}
   </div>
+
 </AuthGuard>
 
 <style>
+  :global(body) {
+    overflow: hidden;
+  }
+
   .page-content {
-    padding: 2rem;
+    padding: 2rem 4rem;
+    max-width: 1500px;
+    margin: 0 auto;
+    height: calc(100vh - 60px);
+    border:#000;
+    border-radius: 20px;
+    overflow: hidden;
+  }
+  .site-footer {
+    background: #000;
+    color: #fff;
+    text-align: center;
+    padding: 1rem;
+    font-size: 0.9rem;
   }
 </style>

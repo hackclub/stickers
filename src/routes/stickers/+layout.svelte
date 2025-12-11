@@ -21,7 +21,13 @@
 </AuthGuard>
 
 <style>
+  :global(body) {
+    overflow: auto;
+  }
+
   .page-content {
-    padding: 2rem;
+    padding: 2rem 4rem;
+    max-width: 1400px;
+    margin: 0 auto;
   }
 </style>

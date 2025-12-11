@@ -18,10 +18,20 @@
   <div class="page-content">
     {@render children()}
   </div>
+
 </AuthGuard>
 
 <style>
   .page-content {
-    padding: 2rem;
+    padding: 2rem 4rem;
+    max-width: 1500px;
+    margin: 0 auto;
+  }
+  .site-footer {
+    background: #000;
+    color: #fff;
+    text-align: center;
+    padding: 1rem;
+    font-size: 0.9rem;
   }
 </style>

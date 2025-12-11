@@ -20,77 +20,30 @@
 
   function openMakeDeal() {
     showModal = true;
+    showModal()
   }
 
   function closeModal() {
     showModal = false;
   }
+
+if (showModal) {
+  document.body.style.overflow = 'hidden';
+  alert('test');
+
+} else {
+  document.body.style.overflow = 'auto';
+}
 </script>
 
 <h1><mark>Trade</mark></h1>
 
-<button class="make-deal-btn" onclick={openMakeDeal}>+ Make a Deal</button>
+<button class="make-deal-btn" onclick={openMakeDeal}>Propose</button>
 
 <h2><div style="font-weight: bold; background-color: #d9c9b6; padding: 0 1rem; font-family: 'Departure Mono', monospace; height: 2rem; width: max-content;">Incoming Trades</div></h2>
 
 <div class="trades-list">
-  {#each mockTrades as trade}
-    <div class="trade-row">
-      <div class="trade-box">
-        <div class="trade-side give-side">
-          <img src={trade.give.img} alt={trade.give.name} class="sticker-img" />
-          <div class="quantity">×{trade.give.quantity}</div>
-        </div>
-        <div class="trade-side get-side">
-          <img src={trade.get.img} alt={trade.get.name} class="sticker-img" />
-          <div class="quantity">×{trade.get.quantity}</div>
-        </div>
-      </div>
-      <div class="trade-message">
-        <div class="message-header">
-          <span class="from-user">{trade.from}</span>
-        </div>
-        <p class="message-text">{trade.message}</p>
-        <button class="discuss-btn">Discuss</button>
-      </div>
-    </div>
-  {/each}
 </div>
-
-{#if showModal}
-  <div class="modal-overlay" onclick={closeModal}>
-    <div class="modal" onclick={(e) => e.stopPropagation()}>
-      <h2>Propose a Trade</h2>
-      <div class="modal-content">
-        <div class="trade-side give-side">
-          <label>You Give</label>
-          <select>
-            <option>Select sticker...</option>
-            <option>Orpheus</option>
-            <option>Hack Club Flag</option>
-            <option>HackOS  </option>
-          </select>
-          <input type="number" placeholder="Qty" value="1" min="1" />
-        </div>
-        <div class="trade-arrow">⇄</div>
-        <div class="trade-side get-side">
-          <label>You Get</label>
-          <select>
-            <option>Select sticker...</option>
-            <option>🦕 Orpheus</option>
-            <option>🚩 Hack Club Flag</option>
-            <option>💻 Retro Computer</option>
-          </select>
-          <input type="number" placeholder="Qty" value="1" min="1" />
-        </div>
-      </div>
-      <div class="modal-actions">
-        <button class="cancel-btn" onclick={closeModal}>Cancel</button>
-        <button class="submit-btn" onclick={closeModal}>Post Trade</button>
-      </div>
-    </div>
-  </div>
-{/if}
 
 <style>
   h1 {
