@@ -14,7 +14,8 @@ class Auth < Grape::API
       session[:user] = {
         id: auth.uid,
         email: auth.info.email,
-        name: auth.info.name
+        name: auth.info.name,
+        slack_id: auth.info.slack_id
       }
       redirect ENV.fetch('AUTH_SUCCESS_REDIRECT', '/')
     end

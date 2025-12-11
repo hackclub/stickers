@@ -5,4 +5,6 @@ class App < Grape::API
 
   mount Auth
   mount Stickers
+  mount Shop
+  mount Designs
 end
