@@ -1,22 +1,7 @@
 <script>
   import Peelable from '$lib/components/Peelable.svelte';
   import Background from '$lib/components/Background.svelte';
-  import hackClubLogo from '$lib/assets/images/hackClub.png';
-
-  let logoTransform = $state('');
-
-  function handleLogoMouseMove(e) {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = (e.clientX - rect.left) / rect.width - 0.5;
-    const y = (e.clientY - rect.top) / rect.height - 0.5;
-    const rotateY = x * 20;
-    const rotateX = -y * 20;
-    logoTransform = `perspective(500px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-  }
-
-  function handleLogoMouseLeave() {
-    logoTransform = '';
-  }
+  import morePeeledLogo from '$lib/assets/images/morePeeled.png';
 
   function handleLogin() {
     window.location.href = 'http://localhost:9292/auth/login';
@@ -25,44 +10,39 @@
 
 <Background />
 
-<div class="container">
-  <h1>
-    <img 
-      class="title-logo" 
-      src={hackClubLogo} 
-      alt="Stickers!"
-      style:transform={logoTransform}
-      onmousemove={handleLogoMouseMove}
-      onmouseleave={handleLogoMouseLeave}
-    >
-  </h1>
+<div class="page-wrapper">
   
-  <p>Manage everything sticky! Get free stickers for signing up, hack or trade to earn rare stickers and certify your collection</p> 
-    
 
-  <Peelable 
-  class="login-sticker"
-  corner="bottom-right"
-  peelOnHover={true}
-  hoverPeelAmount={0.4}
-  peelOnClick={true}
-  peelAwayDuration={1000}
-  onPeelComplete={handleLogin}
-  borderRadius="0.5rem"
->
-  {#snippet topContent()}
-    <div class="sticker-face">Sign in!</div>
-  {/snippet}
-  {#snippet backContent()}
-    <div class="sticker-back"></div>
-  {/snippet}
-  {#snippet bottomContent()}
-    <div class="sticker-surface">
-      <span style="color: black; font-size: 2xrem;">Loading...</span>
-    </div>
-  {/snippet}
-  </Peelable>
-  <p>*with Hack Club</p>
+  <div class="content-container">
+    <img src={morePeeledLogo} alt="Hack Club Stickers" class="hero-logo" />
+    <h1><u>Hack Club Stickers</u></h1>
+    <p>Get sticky! Every Hack Clubber gets free stickers, and can code or trade to earn a collection.</p>
+
+    <Peelable 
+      class="login-sticker"
+      corner="bottom-right"
+      peelOnHover={true}
+      hoverPeelAmount={0.4}
+      peelOnClick={true}
+      peelAwayDuration={1000}
+      onPeelComplete={handleLogin}
+      borderRadius="0.5rem"
+    >
+      {#snippet topContent()}
+        <div class="sticker-face">Sign in!</div>
+      {/snippet}
+      {#snippet backContent()}
+        <div class="sticker-back"></div>
+      {/snippet}
+      {#snippet bottomContent()}
+        <div class="sticker-surface">
+          <span>Loading...</span>
+        </div>
+      {/snippet}
+    </Peelable>
+
+    <footer><a href="https://hackclub.com/privacy-and-terms/" target="_blank" rel="noopener noreferrer">Privacy and Terms</a></footer>
+  </div>
 </div>
 
 <style>
@@ -77,46 +57,53 @@
   :global(html, body) {
     overflow: hidden;
     height: 100%;
+    margin: 0;
+    padding: 0;
   }
 
-  .container {
+  .page-wrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: center;
     height: 100vh;
-    text-align: center;
     font-family: 'Departure Mono', monospace;
-    padding: 0 2rem 2rem 2rem;
-    background: transparent;
-    overflow: hidden;
+    padding: 2rem;
+    box-sizing: border-box;
   }
 
-  h1 {
-    font-size: 10rem;
-    margin: -20px 0 1rem 0;
-    font-weight: 400;
-  }
-
-  .title-logo {
-    max-width: 100%;
+  .hero-logo {
+    max-width: 500px;
+    width: 55%;
     height: auto;
-    transition: transform 0.15s ease-out;
-    transform-style: preserve-3d;
+    margin-bottom: 2rem;
+  }
+
+  .content-container {
+    background: rgba(255, 255, 255, 0.95);
+    border: 2px solid #333;
+    border-radius: 0.5rem;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    max-width: 600px;
   }
 
   p {
-    font-size: 2rem;
-    max-width: 60vw;
-    margin: 0.5rem 0;
-    background: rgba(250, 248, 245, 0.9);
-    padding: 0.5rem 1rem;
-    border-radius: 0.25rem;
+    font-size: 1.5rem;
+    margin: 0 0 1rem 0;
+  }
+
+  a {
+    color: #333;
+    text-decoration: underline;
   }
   :global(.login-sticker) {
-    width: clamp(150px, 20vw, 650px);
-    height: clamp(45px, 20vw, 120px);
-    margin: 2rem 0;
+    width: clamp(150px, 20vw, 300px);
+    height: clamp(45px, 6vw, 80px);
+    margin: 1rem 0;
     cursor: pointer;
   }
 
@@ -131,7 +118,7 @@
     color: white;
     font-family: 'Departure Mono', monospace;
     font-weight: 400;
-    font-size: 3.1rem;
+    font-size: 2rem;
   }
 
   .sticker-back {
@@ -152,5 +139,11 @@
     color: #333;
     font-family: 'Departure Mono', monospace;
     font-size: 0.9rem;
+  }
+
+  footer {
+    font-size: 1rem;
+    color: #666;
+    margin-top: 1rem;
   }
 </style>
