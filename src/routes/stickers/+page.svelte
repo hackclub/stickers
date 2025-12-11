@@ -10,9 +10,11 @@
 
   onMount(async () => {
     try {
-      const res = await fetch('http://localhost:9292/stickers');
+      const res = await fetch('/api/stickers');
       if (!res.ok) throw new Error('Failed to fetch stickers');
       stickers = await res.json();
+      const ownedCount = stickers.filter(s => s.owned).length
+      //TODO: this is slow asf, we can use a ledger maybe
     } catch (e) {
       error = e.message;
     } finally {
@@ -52,7 +54,7 @@
 
 <div class="content-row">
   <div class="card info-card">
-    <p>Check out all the Hack Club stickers, let us know if we missed any!</p>
+    <p>All our beautiful stickers...<br>Let us know if we missed any!</p>
   </div>
 
   <div class="card filter-card">
@@ -84,6 +86,7 @@
     {#each filteredDesigns as design}
       <div 
         class="panel" 
+        class:owned={design.owned}
         onclick={() => openModal(design)}
       >
         <div class="panel-image">
@@ -115,7 +118,7 @@
         <h2>{selectedSticker.name}</h2>
         <div class="modal-info">
           {#each Object.entries(selectedSticker) as [key, value]}
-            {#if key !== 'image'}
+            {#if key !== 'image' && key !== 'owned_by' && key !== 'owned' && key !== 'id'}
               <div class="info-row">
                 <span class="info-key">{key}:</span>
                 <span class="info-value">{Array.isArray(value) ? value.join(', ') : value}</span>
@@ -137,7 +140,7 @@
   .content-row {
     display: flex;
     gap: 1.5rem;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     align-items: stretch;
     margin-bottom: 2rem;
   }
@@ -150,7 +153,7 @@
   }
 
   .info-card {
-    flex: 0 0 auto;
+    flex: 1 1 300px;
   }
 
   .filter-card {
@@ -176,7 +179,7 @@
   }
 
   .search-card {
-    flex: 1;
+    flex: 1 1 200px;
     display: flex;
     align-items: center;
   }
@@ -194,7 +197,16 @@
   p {
     font-size: 1.5rem;
     margin: 0;
-    white-space: nowrap;
+  }
+
+  @media (max-width: 768px) {
+    .content-row {
+      flex-direction: column;
+    }
+
+    .info-card {
+      flex: 0 0 auto;
+    }
   }
 
   mark {
@@ -222,7 +234,7 @@
   }
 
   .panel {
-    background: rgba(255, 255, 255, 0.95);
+    background: #eeeeee;
     border: 2px solid #333;
     border-radius: 0.5rem;
     overflow: hidden;
@@ -235,13 +247,17 @@
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   }
 
+  .panel.owned .panel-image {
+    background: rgba(200, 247, 197, 0.95);
+  }
+
   .panel-image {
     width: 100%;
     height: 200px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #f5f5f5;
+    background: #a3b2c3;
     padding: 1rem;
   }
 
