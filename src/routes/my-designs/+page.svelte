@@ -1,13 +1,59 @@
 <script>
+  import { onMount } from 'svelte';
   import resizeIcon from '$lib/assets/images/resize.jpg';
 
   let showModal = $state(false);
   let selectedDesign = $state(null);
+  let showUploadModal = $state(false);
+  let myDesigns = $state([]);
+  let loading = $state(true);
+  let error = $state(null);
+  let uploadUrl = $state('');
+  let uploadName = $state('');
+  let submitting = $state(false);
 
-  const myDesigns = [
-    { designUrl: 'https://hc-cdn.hel1.your-objectstorage.com/s/v3/80c59fb29dd5a3fbffc1b2297b512ac8cbb719cb_IMG_5304.png ', name: 'FlavorTownRed', status: 'approved', votes: 42, width: 100, height: 100, submittedAt: '2024-03-15' },
-    { designUrl: 'https://hc-cdn.hel1.your-objectstorage.com/s/v3/80c59fb29dd5a3fbffc1b2297b512ac8cbb719cb_IMG_5304.png ', name: 'FlavorTownRed', status: 'pending', votes: 42, width: 100, height: 100, submittedAt: '2024-03-15' }
-  ];
+  onMount(async () => {
+    await fetchDesigns();
+  });
+
+  async function fetchDesigns() {
+    loading = true;
+    try {
+      const res = await fetch('/api/designs');
+      if (!res.ok) throw new Error('Failed to fetch designs');
+      myDesigns = await res.json();
+    } catch (e) {
+      error = e.message;
+    } finally {
+      loading = false;
+    }
+  }
+
+  async function submitDesign() {
+    if (!uploadUrl.trim()) return;
+    submitting = true;
+    try {
+      const res = await fetch('/api/designs', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          fields: {
+            CDN_URL: uploadUrl,
+            Name: uploadName || 'Untitled'
+          }
+        })
+      });
+      if (!res.ok) throw new Error('Failed to submit design');
+      showUploadModal = false;
+      uploadUrl = '';
+      uploadName = '';
+      await fetchDesigns();
+    } catch (e) {
+      alert('Error: ' + e.message);
+    } finally {
+      submitting = false;
+    }
+  }
 
   function openModal(design) {
     selectedDesign = design;
@@ -24,13 +70,17 @@
 
 <div class="content-row">
   <div class="card info-card">
-    <p>Submit a sticker design, after voting it could be shipped out in the monthly sticker box</p>
+    <p>Submit a sticker design, after approval it will go into the shop and you can be paid per sticker order</p>
   </div>
 
-  <button class="card upload-btn">+ Upload a design</button>
+  <button class="card upload-btn" onclick={() => showUploadModal = true}>+ Upload a design</button>
 </div>
 
-{#if myDesigns.length > 0}
+{#if loading}
+  <div class="loading">Loading designs...</div>
+{:else if error}
+  <div class="error">Error: {error}</div>
+{:else if myDesigns.length > 0}
   <div class="table-container">
     <table>
       <thead>
@@ -40,28 +90,23 @@
           <th>Submitted</th>
           <th>Status</th>
           <th>Votes</th>
-          <th>Actions</th>
         </tr>
       </thead>
       <tbody>
         {#each myDesigns as design}
           <tr>
             <td class="design-cell">
-              <img src={design.designUrl} alt={design.name} class="design-thumb" />
+              <img src={design.cdn_url} alt={design.name} class="design-thumb" />
               <button class="resize-btn" onclick={() => openModal(design)}>
                 <img src={resizeIcon} alt="Resize" />
               </button>
             </td>
-            <td>{design.name}</td>
-            <td>{design.submittedAt}</td>
+            <td>{design.name || 'Untitled'}</td>
+            <td>{design.submitted_at || '-'}</td>
             <td>
-              <span class="status status-{design.status}">{design.status}</span>
+              <span class="status status-{design.status || 'pending'}">{design.status || 'pending'}</span>
             </td>
-            <td>{design.votes}</td>
-            <td>
-              <button class="action-btn">Edit</button>
-              <button class="action-btn delete">Delete</button>
-            </td>
+            <td>{design.votes || 0}</td>
           </tr>
         {/each}
       </tbody>
@@ -77,10 +122,30 @@
   <div class="modal-overlay" onclick={closeModal}>
     <div class="modal-content" onclick={(e) => e.stopPropagation()}>
       <button class="modal-close" onclick={closeModal}>×</button>
-      <img src={selectedDesign.designUrl} alt={selectedDesign.name} class="modal-image" />
+      <img src={selectedDesign.cdn_url} alt={selectedDesign.name} class="modal-image" />
       <div class="modal-footer">
-        {selectedDesign.name} — {selectedDesign.width}mm × {selectedDesign.height}mm
+        {selectedDesign.name || 'Untitled'}
       </div>
+    </div>
+  </div>
+{/if}
+
+{#if showUploadModal}
+  <div class="modal-overlay" onclick={() => showUploadModal = false}>
+    <div class="modal-content upload-modal" onclick={(e) => e.stopPropagation()}>
+      <button class="modal-close" onclick={() => showUploadModal = false}>×</button>
+      <h2>Upload Design</h2>
+      <div class="form-group">
+        <label for="cdn-url">Link (upload image in #CDN)</label>
+        <input type="text" id="cdn-url" bind:value={uploadUrl} placeholder="https://hc-cdn.hel1.your-objectstorage.com/..." />
+      </div>
+      <div class="form-group">
+        <label for="design-name">Name of sticker (optional)</label>
+        <input type="text" id="design-name" bind:value={uploadName} placeholder="My Cool Sticker" />
+      </div>
+      <button class="submit-btn" onclick={submitDesign} disabled={submitting || !uploadUrl.trim()}>
+        {submitting ? 'Submitting...' : 'Submit Design'}
+      </button>
     </div>
   </div>
 {/if}
@@ -106,7 +171,7 @@
   }
 
   .info-card {
-    flex: 1;
+    flex: 1 1 auto;
   }
 
   .upload-btn {
@@ -124,6 +189,20 @@
   p {
     font-size: 1.5rem;
     margin: 0;
+  }
+
+  @media (max-width: 1000px) {
+    .content-row {
+      flex-direction: column;
+    }
+
+    .info-card {
+      flex: 0 0 auto;
+    }
+
+    .upload-btn {
+      width: 100%;
+    }
   }
 
   mark {
@@ -214,29 +293,6 @@
     background: #f8d7da;
   }
 
-  .action-btn {
-    font-family: inherit;
-    font-size: 0.9rem;
-    padding: 0.4rem 0.75rem;
-    border: 1px solid #333;
-    border-radius: 0.25rem;
-    background: #fff;
-    cursor: pointer;
-    margin-right: 0.5rem;
-  }
-
-  .action-btn:hover {
-    background: #f0f0f0;
-  }
-
-  .action-btn.delete {
-    background: #f8d7da;
-    border-color: #cc0000;
-  }
-
-  .action-btn.delete:hover {
-    background: #f5c6cb;
-  }
 
   .empty-state {
     margin-top: 2rem;
@@ -295,5 +351,71 @@
     font-family: 'Departure Mono', monospace;
     font-size: 1.25rem;
     text-align: center;
+  }
+
+  .loading, .error {
+    margin-top: 2rem;
+    text-align: center;
+    padding: 3rem;
+    background: rgba(255, 255, 255, 0.95);
+    border: 2px solid #333;
+    border-radius: 0.5rem;
+    font-size: 1.25rem;
+  }
+
+  .error {
+    color: #cc0000;
+  }
+
+  .upload-modal {
+    width: 400px;
+    max-width: 90vw;
+  }
+
+  .upload-modal h2 {
+    margin: 0 0 1.5rem 0;
+    font-size: 1.5rem;
+  }
+
+  .form-group {
+    margin-bottom: 1rem;
+  }
+
+  .form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+  }
+
+  .form-group input {
+    width: 100%;
+    padding: 0.75rem;
+    font-family: inherit;
+    font-size: 1rem;
+    border: 2px solid #333;
+    border-radius: 0.5rem;
+    box-sizing: border-box;
+  }
+
+  .submit-btn {
+    width: 100%;
+    padding: 1rem;
+    margin-top: 1rem;
+    font-family: inherit;
+    font-size: 1.1rem;
+    background: #444;
+    color: white;
+    border: 2px solid #333;
+    border-radius: 0.5rem;
+    cursor: pointer;
+  }
+
+  .submit-btn:hover:not(:disabled) {
+    background: #555;
+  }
+
+  .submit-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
   }
 </style>
