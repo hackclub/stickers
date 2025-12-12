@@ -9,12 +9,16 @@ services:
       - OIDC_CLIENT_ID
       - OIDC_CLIENT_SECRET
       - OIDC_REDIRECT_URI
+      - FRONTEND_URL=https://kks08kkcg88ckkcocwooc4ck.a.selfhosted.hackclub.com
+      - AIRTABLE_BASE_ID
+      - AIRTABLE_PAT
 
   frontend:
     build: .
     ports:
       - "3000:3000"
     environment:
-      - ORIGIN=https://stickers.hackclub.com
+      - ORIGIN=https://kks08kkcg88ckkcocwooc4ck.a.selfhosted.hackclub.com
+      - BACKEND_URL=http://backend:9292
     depends_on:
       - backend

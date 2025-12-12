@@ -4,7 +4,7 @@
   import Logo from '$lib/assets/images/hackClubLogo.png';
 
   function handleLogin() {
-    window.location.href = 'http://localhost:9292/auth/login';
+    window.location.href = '/auth/login';
   }
 </script>
 

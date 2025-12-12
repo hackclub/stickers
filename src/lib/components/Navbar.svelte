@@ -41,7 +41,7 @@
         <a class="nav-link disabled">|Trade (soon)</a>
       </li>-->
       <li class="nav-item logout">
-        <a class="nav-link" href="http://localhost:9292/auth/logout">|Logout ⠀</a>
+        <a class="nav-link" href="/auth/logout">|Logout ⠀</a>
       </li>
     </ul>
     <span class="help-text">Made with &lt;3 by Nora and Euan</span>
