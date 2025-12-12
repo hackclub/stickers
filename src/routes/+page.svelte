@@ -1,7 +1,7 @@
 <script>
   import Peelable from '$lib/components/Peelable.svelte';
   import Background from '$lib/components/Background.svelte';
-  import morePeeledLogo from '$lib/assets/images/morePeeled.png';
+  import Logo from '$lib/assets/images/hackClubLogo.png';
 
   function handleLogin() {
     window.location.href = 'http://localhost:9292/auth/login';
@@ -14,7 +14,7 @@
   
 
   <div class="content-container">
-    <img src={morePeeledLogo} alt="Hack Club Stickers" class="hero-logo" />
+    <img src={Logo} alt="Hack Club Stickers" class="hero-logo" title="Logo by Charlie @Dumbhog" />
     <h1><u>Hack Club Stickers</u></h1>
     <p>Get sticky! Every Hack Clubber gets free stickers, and can code or trade to earn a collection.</p>
 
