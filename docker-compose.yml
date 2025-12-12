@@ -12,6 +12,9 @@ services:
       - FRONTEND_URL=https://kks08kkcg88ckkcocwooc4ck.a.selfhosted.hackclub.com
       - AIRTABLE_BASE_ID
       - AIRTABLE_PAT
+      - HACKATIME_CLIENT_ID
+      - HACKATIME_CLIENT_SECRET
+      - HACKATIME_REDIRECT_URI
 
   frontend:
     build: .
