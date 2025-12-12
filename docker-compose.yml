@@ -1,0 +1,20 @@
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "9292:9292"
+    environment:
+      - SESSION_SECRET
+      - OIDC_ISSUER
+      - OIDC_CLIENT_ID
+      - OIDC_CLIENT_SECRET
+      - OIDC_REDIRECT_URI
+
+  frontend:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      - ORIGIN=https://stickers.hackclub.com
+    depends_on:
+      - backend
