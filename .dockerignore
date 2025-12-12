@@ -6,5 +6,4 @@ build
 !.env.example
 .git
 *.log
-backend
 
