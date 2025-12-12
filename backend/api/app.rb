@@ -2,6 +2,7 @@
 
 class App < Grape::API
   format :json
+  helpers SessionHelpers
 
   mount Auth
   mount Stickers
