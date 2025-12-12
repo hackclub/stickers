@@ -16,6 +16,8 @@ class DesignsTable < AirctiveRecord::Base
 end
 
 class Designs < Base
+  DESIGN_ALLOWED_FIELDS = %w[Name Description Image_URL].freeze
+
   resource :designs do
     get :all do
       error!('Unauthorized', 401) unless current_user
@@ -53,9 +55,11 @@ class Designs < Base
 
     post do
       error!('Unauthorized', 401) unless current_user
-      fields = params[:fields] || {}
-      fields['slack_id'] = current_user[:slack_id] || current_user[:id]
-      DesignsTable.create(fields)
+      safe_fields = (params[:fields] || {}).slice(*DESIGN_ALLOWED_FIELDS)
+      safe_fields['slack_id'] = current_user[:slack_id] || current_user[:id]
+      safe_fields['Status'] = 'pending'
+      safe_fields['Votes'] = 0
+      DesignsTable.create(safe_fields)
     end
 
     route_param :id do
