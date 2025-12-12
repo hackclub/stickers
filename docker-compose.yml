@@ -1,6 +1,8 @@
 services:
   backend:
-    build: ./backend
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
     expose:
       - "9292"
     environment:
@@ -17,7 +19,9 @@ services:
       - HACKATIME_REDIRECT_URI=${HACKATIME_REDIRECT_URI:-}
 
   frontend:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
     expose:
       - "3000"
     environment:
