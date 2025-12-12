@@ -1,8 +1,8 @@
 services:
   backend:
     build: ./backend
-    ports:
-      - "9292:9292"
+    expose:
+      - "9292"
     environment:
       - SESSION_SECRET
       - OIDC_ISSUER
@@ -15,8 +15,8 @@ services:
 
   frontend:
     build: .
-    ports:
-      - "3000:3000"
+    expose:
+      - "3000"
     environment:
       - ORIGIN=https://kks08kkcg88ckkcocwooc4ck.a.selfhosted.hackclub.com
       - BACKEND_URL=http://backend:9292
