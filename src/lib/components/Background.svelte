@@ -25,7 +25,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(200, 220, 240, 0.75);
+    background: rgba(200, 220, 240, 0.70);
     pointer-events: none;
   }
 </style>

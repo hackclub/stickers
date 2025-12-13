@@ -1,6 +1,7 @@
 <script>
   import { onMount } from 'svelte';
   import resizeIcon from '$lib/assets/images/resize.jpg';
+  import LazyImage from '$lib/components/LazyImage.svelte';
 
   let showModal = $state(false);
   let selectedDesign = $state(null);
@@ -96,7 +97,7 @@
         {#each myDesigns as design}
           <tr>
             <td class="design-cell">
-              <img src={design.cdn_url} alt={design.name} class="design-thumb" />
+              <LazyImage src={design.cdn_url} alt={design.name} class="design-thumb" />
               <button class="resize-btn" onclick={() => openModal(design)}>
                 <img src={resizeIcon} alt="Resize" />
               </button>
@@ -122,7 +123,7 @@
   <div class="modal-overlay" onclick={closeModal}>
     <div class="modal-content" onclick={(e) => e.stopPropagation()}>
       <button class="modal-close" onclick={closeModal}>×</button>
-      <img src={selectedDesign.cdn_url} alt={selectedDesign.name} class="modal-image" />
+      <LazyImage src={selectedDesign.cdn_url} alt={selectedDesign.name} class="modal-image" />
       <div class="modal-footer">
         {selectedDesign.name || 'Untitled'}
       </div>

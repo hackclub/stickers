@@ -1,10 +1,13 @@
 <script>
+  import { dev } from '$app/environment';
   import Peelable from '$lib/components/Peelable.svelte';
   import Background from '$lib/components/Background.svelte';
   import Logo from '$lib/assets/images/hackClubLogo.png';
 
   function handleLogin() {
-    window.location.href = '/auth/login';
+    const authUrl = dev ? 'http://localhost:9292/auth/login' : '/auth/login';
+    //console.log('called handleLogin');
+    window.location.href = authUrl;
   }
 </script>
 
@@ -12,7 +15,7 @@
 
 <div class="page-wrapper">
   
-  <img src={Logo} alt="Hack Club Stickers" class="hero-logo" title="Logo by Charlie @Dumbhog" />
+  <img src={Logo} alt="Hack Club Stickers" class="hero-logo" title="Logo by Charlie @Dumbhog" draggable="false" on:dragstart|preventDefault />
   <div class="content-container">
     
     <h1><u>Hack Club Stickers</u></h1>
@@ -76,6 +79,13 @@
     width: clamp(180px, 20vw, 300px);
     height: auto;
     margin-bottom: 2rem;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+    -webkit-user-drag: none;
+    pointer-events: none;
   }
 
   .content-container {

@@ -1,5 +1,6 @@
 <script>
   import { onMount } from 'svelte';
+  import LazyImage from '$lib/components/LazyImage.svelte';
 
   let selectedFilter = $state('all');
   let searchQuery = $state('');
@@ -53,10 +54,6 @@
 <h1><mark>Stickers</mark></h1>
 
 <div class="content-row">
-  <div class="card info-card">
-    <p>All our beautiful stickers...<br>Let us know if we missed any!</p>
-  </div>
-
   <div class="card filter-card">
     <label for="filter">Filter:</label>
     <select id="filter" bind:value={selectedFilter}>
@@ -82,24 +79,22 @@
 {:else if error}
   <div class="error">Error: {error}</div>
 {:else}
-  <div class="panels-grid">
-    {#each filteredDesigns as design}
-      <div 
-        class="panel" 
-        class:owned={design.owned}
-        onclick={() => openModal(design)}
-      >
-        <div class="panel-image">
-          <img src={design.image} alt={design.name} />
+  <div class="paper-background">
+    <h2 class="paper-title"><br>All our beautiful stickers: </h2>
+    <div class="stickers-scatter">
+      {#each filteredDesigns as design, i}
+        <div 
+          class="sticker-item"
+          style="--rotation: {(i * 17) % 30 - 15}deg"
+          onclick={() => openModal(design)}
+        >
+          <div class="sticker-image">
+            <LazyImage src={design.image} alt={design.name} />
+          </div>
+          <span class="sticker-name">{design.name}</span>
         </div>
-        <div class="panel-footer">
-          <span class="panel-name">{design.name}</span>
-          {#if design.artist}
-            <span class="panel-artist">by {design.artist}</span>
-          {/if}
-        </div>
-      </div>
-    {/each}
+      {/each}
+    </div>
   </div>
 
   {#if filteredDesigns.length === 0}
@@ -112,7 +107,7 @@
     <div class="modal-content" onclick={(e) => e.stopPropagation()}>
       <button class="modal-close" onclick={closeModal}>&times;</button>
       <div class="modal-image">
-        <img src={selectedSticker.image} alt={selectedSticker.name} />
+        <LazyImage src={selectedSticker.image} alt={selectedSticker.name} />
       </div>
       <div class="modal-footer">
         <h2>{selectedSticker.name}</h2>
@@ -132,6 +127,14 @@
 {/if}
 
 <style>
+  @font-face {
+    font-family: 'GeraldScript';
+    src: url('$lib/assets/fonts/GeraldScript.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+
   h1 {
     font-size: 3rem;
     margin: 0 0 2rem 0;
@@ -150,10 +153,6 @@
     padding: 1.5rem;
     border-radius: 0.5rem;
     border: 2px solid #333;
-  }
-
-  .info-card {
-    flex: 1 1 300px;
   }
 
   .filter-card {
@@ -227,62 +226,78 @@
     color: #cc0000;
   }
 
-  .panels-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 1.5rem;
-  }
-
-  .panel {
-    background: #eeeeee;
+  .paper-background {
+    background: 
+      linear-gradient(to right, transparent 0px, transparent 40px, #e8b4b8 40px, #e8b4b8 41px, transparent 41px),
+      linear-gradient(to bottom, #faf8f5 0px, #faf8f5 62px, #6b8cae 62px, #bed8f3 66px, transparent 66px),
+      repeating-linear-gradient(
+        to bottom,
+        transparent 0px,
+        transparent 31px,
+        #c8d4e0 31px,
+        #c8d4e0 32px
+      ),
+      linear-gradient(to bottom, #faf8f5, #f5f0e8);
     border: 2px solid #333;
     border-radius: 0.5rem;
-    overflow: hidden;
+    padding: 0.5rem 2rem 2rem 50px;
+    min-height: 60vh;
+    box-shadow: 
+      inset 0 0 30px rgba(0, 0, 0, 0.03),
+      0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .paper-title {
+    font-family: 'GeraldScript', cursive;
+    text-align: left;
+    font-size: 2rem;
+    line-height: 28px;
+    margin: 0 0 3rem 0;
+    color: #333;
+  }
+
+  .stickers-scatter {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3rem;
+    justify-content: center;
+    align-items: flex-start;
+  }
+
+  .sticker-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
     cursor: pointer;
-    transition: transform 0.2s, box-shadow 0.2s;
   }
 
-  .panel:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  }
-
-  .panel.owned .panel-image {
-    background: rgba(200, 247, 197, 0.95);
-  }
-
-  .panel-image {
-    width: 100%;
+  .sticker-image {
+    width: 200px;
     height: 200px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #a3b2c3;
-    padding: 1rem;
+    transform: rotate(var(--rotation, 0deg));
+    transition: transform 0.2s ease;
   }
 
-  .panel-image img {
+  .sticker-item:hover .sticker-image {
+    transform: rotate(var(--rotation, 0deg)) scale(1.075);
+  }
+
+  .sticker-image :global(img) {
     max-width: 100%;
     max-height: 100%;
     object-fit: contain;
   }
 
-  .panel-footer {
-    padding: 1rem;
-    border-top: 1px solid #333;
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
-  }
-
-  .panel-name {
-    font-size: 1.25rem;
-    font-weight: bold;
-  }
-
-  .panel-artist {
-    font-size: 0.9rem;
-    color: #666;
+  .sticker-name {
+    font-size: 1rem;
+    color: #333;
+    text-align: center;
+    max-width: 200px;
+    word-wrap: break-word;
   }
 
   .no-results {
@@ -348,9 +363,10 @@
     padding: 2rem;
     background: #f5f5f5;
     min-height: 300px;
+    overflow: hidden;
   }
 
-  .modal-image img {
+  .modal-image :global(img) {
     max-width: 100%;
     max-height: 60vh;
     object-fit: contain;

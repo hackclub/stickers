@@ -1,6 +1,7 @@
 <script>
   import { onMount } from 'svelte';
   import alertIcon from '$lib/assets/images/alert.png';
+  import LazyImage from '$lib/components/LazyImage.svelte';
 
   let sortBy = $state('cheapest');
   let searchQuery = $state('');
@@ -95,7 +96,7 @@
         onclick={() => openModal(item)}
       >
         <div class="panel-image">
-          <img src={item.image} alt={item.name} />
+          <LazyImage src={item.image} alt={item.name} />
         </div>
         <div class="panel-footer">
           <span class="panel-name">{item.name}</span>
@@ -115,7 +116,7 @@
     <div class="modal-content" onclick={(e) => e.stopPropagation()}>
       <button class="modal-close" onclick={closeModal}>&times;</button>
       <div class="modal-image">
-        <img src={selectedItem.image} alt={selectedItem.name} />
+        <LazyImage src={selectedItem.image} alt={selectedItem.name} />
       </div>
       <div class="modal-footer">
         <h2>{selectedItem.name}</h2>

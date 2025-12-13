@@ -1,5 +1,6 @@
 <script>
   import { onMount } from 'svelte';
+  import LazyImage from '$lib/components/LazyImage.svelte';
 
   let designs = $state([]);
   let loading = $state(true);
@@ -76,7 +77,7 @@
         disabled={votingId !== null}
       >
         <div class="design-image">
-          <img src={design.cdn_url} alt={design.name} />
+          <LazyImage src={design.cdn_url} alt={design.name} />
         </div>
         <div class="design-footer">
           <span class="design-name">{design.name || 'Untitled'}</span>
