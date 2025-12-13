@@ -7,5 +7,8 @@ app
 !.env.example
 .git
 *.log
-backend
+backend/.env
+backend/.env.*
+backend/vendor
+backend/.bundle
 

@@ -1,27 +1,26 @@
 services:
   backend:
-    build: ./backend
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: backend
     expose:
       - "9292"
+    env_file:
+      - path: ./backend/.env
+        required: false
     environment:
-      - SESSION_SECRET=${SESSION_SECRET}
-      - OIDC_ISSUER=${OIDC_ISSUER}
-      - OIDC_CLIENT_ID=${OIDC_CLIENT_ID}
-      - OIDC_CLIENT_SECRET=${OIDC_CLIENT_SECRET}
-      - OIDC_REDIRECT_URI=${OIDC_REDIRECT_URI}
-      - FRONTEND_URL=https://kks08kkcg88ckkcocwooc4ck.a.selfhosted.hackclub.com
-      - AIRTABLE_BASE_ID=${AIRTABLE_BASE_ID}
-      - AIRTABLE_PAT=${AIRTABLE_PAT}
-      - HACKATIME_CLIENT_ID=${HACKATIME_CLIENT_ID:-}
-      - HACKATIME_CLIENT_SECRET=${HACKATIME_CLIENT_SECRET:-}
-      - HACKATIME_REDIRECT_URI=${HACKATIME_REDIRECT_URI:-}
+      FRONTEND_URL: ${FRONTEND_URL:-http://localhost:5173}
 
   frontend:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: frontend
     expose:
       - "3000"
     environment:
-      - ORIGIN=https://kks08kkcg88ckkcocwooc4ck.a.selfhosted.hackclub.com
-      - BACKEND_URL=http://backend:9292
+      ORIGIN: ${ORIGIN:-http://localhost:5173}
+      BACKEND_URL: http://backend:9292
     depends_on:
       - backend
