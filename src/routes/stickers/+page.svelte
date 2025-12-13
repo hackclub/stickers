@@ -157,8 +157,8 @@
   .content-row {
     display: flex;
     gap: 1.5rem;
-    flex-wrap: wrap;
-    align-items: stretch;
+    flex-wrap: nowrap;
+    align-items: center;
     margin-bottom: 2rem;
   }
 
@@ -171,9 +171,14 @@
 
   .filter-card {
     display: flex;
+    flex-direction: row;
     align-items: center;
     gap: 0.75rem;
     flex: 0 0 auto;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 1rem 1.5rem;
+    border-radius: 0.5rem;
+    border: 2px solid #333;
   }
 
   .filter-card label {
@@ -193,6 +198,7 @@
 
   .search-card {
     flex: 1 1 200px;
+    background-color: #d9c9b6;
     display: flex;
     align-items: center;
   }
@@ -204,7 +210,7 @@
     border: none;
     border-bottom: 2px solid #333;
     border-radius: 0;
-    background: transparent;
+    background: rgba(255, 255, 255, 0.8);
     width: 100%;
   }
 
@@ -224,15 +230,19 @@
     }
 
     .content-row {
-      flex-direction: column;
+      flex-wrap: wrap;
     }
 
-    .info-card {
-      flex: 0 0 auto;
+    .filter-card {
+      padding: 0.75rem 1rem;
     }
 
     .filter-card label {
       font-size: 1rem;
+    }
+
+    .search-card {
+      flex: 1 1 100%;
     }
 
     .sticker-image {
