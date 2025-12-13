@@ -2,11 +2,16 @@
   import { onMount } from "svelte";
   import LazyImage from "$lib/components/LazyImage.svelte";
 
+  /** @typedef {{ id: string, name: string, image: string, owned?: boolean, tags?: string[] }} Sticker */
+
   let selectedFilter = $state("all");
   let searchQuery = $state("");
+  /** @type {Sticker | null} */
   let selectedSticker = $state(null);
+  /** @type {Sticker[]} */
   let stickers = $state([]);
   let loading = $state(true);
+  /** @type {string | null} */
   let error = $state(null);
 
   onMount(async () => {
@@ -17,7 +22,7 @@
       const ownedCount = stickers.filter((s) => s.owned).length;
       //TODO: this is slow asf, we can use a ledger maybe
     } catch (e) {
-      error = e.message;
+      error = e instanceof Error ? e.message : 'Unknown error';
     } finally {
       loading = false;
     }
@@ -36,6 +41,7 @@
     })
   );
 
+  /** @param {Sticker} sticker */
   function openModal(sticker) {
     selectedSticker = sticker;
   }
@@ -44,6 +50,7 @@
     selectedSticker = null;
   }
 
+  /** @param {KeyboardEvent} e */
   function handleKeydown(e) {
     if (e.key === "Escape" && selectedSticker) {
       closeModal();
@@ -156,10 +163,10 @@
   }
 
   .card {
-    background: rgba(255, 255, 255, 0.95);
-    padding: 1.5rem;
-    border-radius: 0.5rem;
-    border: 2px solid #333;
+    background: transparent;
+    padding: 0;
+    border-radius: 0;
+    border: none;
   }
 
   .filter-card {
@@ -194,10 +201,16 @@
     font-family: inherit;
     font-size: 1rem;
     padding: 0.5rem 1rem;
-    border: 2px solid #333;
-    border-radius: 0.5rem;
-    background: rgba(250, 248, 245, 0.95);
+    border: none;
+    border-bottom: 2px solid #333;
+    border-radius: 0;
+    background: transparent;
     width: 100%;
+  }
+
+  .search-card input:focus {
+    outline: none;
+    border-bottom-color: #666;
   }
 
   p {
@@ -206,12 +219,38 @@
   }
 
   @media (max-width: 768px) {
+    h1 {
+      font-size: 2rem;
+    }
+
     .content-row {
       flex-direction: column;
     }
 
     .info-card {
       flex: 0 0 auto;
+    }
+
+    .filter-card label {
+      font-size: 1rem;
+    }
+
+    .sticker-image {
+      width: 120px;
+      height: 120px;
+    }
+
+    .stickers-scatter {
+      gap: 1.5rem;
+    }
+
+    .paper-background {
+      padding: 0.5rem 1rem 1.5rem 30px;
+    }
+
+    .paper-title,
+    .paper-footer {
+      font-size: 1.5rem;
     }
   }
 

@@ -19,6 +19,12 @@
     background-size: auto;
   }
 
+  @media (max-width: 768px) {
+    .background-container {
+      background-size: 150px auto;
+    }
+  }
+
   .overlay {
     position: absolute;
     top: 0;

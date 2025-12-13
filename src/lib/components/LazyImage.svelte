@@ -1,17 +1,11 @@
 <script>
-  /**
-   * @param {string} src URL
-   * @param {string} alt Alt
-   * @param {string} [class=''] class
-   * @param {number} [width] 
-   * @param {number} [height] 
-   */
+  /** @type {{ src: string, alt?: string, class?: string, width?: number, height?: number, [key: string]: any }} */
   let {
     src,
     alt = '',
     class: className = '',
-    width,
-    height,
+    width = undefined,
+    height = undefined,
     ...restProps
   } = $props();
 </script>
@@ -19,8 +13,8 @@
 <img
   {src}
   {alt}
-  {width}
-  {height}
+  width={width}
+  height={height}
   loading="lazy"
   decoding="async"
   class={className}

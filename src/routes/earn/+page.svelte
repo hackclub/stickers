@@ -3,11 +3,16 @@
   import alertIcon from '$lib/assets/images/alert.png';
   import LazyImage from '$lib/components/LazyImage.svelte';
 
+  /** @typedef {{ id: string, name: string, image: string, price: number, description?: string }} ShopItem */
+
   let sortBy = $state('cheapest');
   let searchQuery = $state('');
+  /** @type {ShopItem | null} */
   let selectedItem = $state(null);
+  /** @type {ShopItem[]} */
   let items = $state([]);
   let loading = $state(true);
+  /** @type {string | null} */
   let error = $state(null);
 
   onMount(async () => {
@@ -16,7 +21,7 @@
       if (!res.ok) throw new Error('Failed to fetch shop items');
       items = await res.json();
     } catch (e) {
-      error = e.message;
+      error = e instanceof Error ? e.message : 'Unknown error';
     } finally {
       loading = false;
     }
@@ -36,6 +41,7 @@
       })
   );
 
+  /** @param {ShopItem} item */
   function openModal(item) {
     selectedItem = item;
   }
@@ -44,6 +50,7 @@
     selectedItem = null;
   }
 
+  /** @param {KeyboardEvent} e */
   function handleKeydown(e) {
     if (e.key === 'Escape' && selectedItem) {
       closeModal();
@@ -219,12 +226,46 @@
   }
 
   @media (max-width: 768px) {
+    h1 {
+      font-size: 2rem;
+    }
+
     .content-row {
       flex-direction: column;
     }
 
     .info-card {
       flex: 0 0 auto;
+    }
+
+    p {
+      font-size: 1rem;
+    }
+
+    .card {
+      padding: 1rem;
+    }
+
+    .filter-card label,
+    .tickets-card {
+      font-size: 1rem;
+    }
+
+    .panels-grid {
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 1rem;
+    }
+
+    .panel-image {
+      height: 150px;
+    }
+
+    .panel-name {
+      font-size: 1rem;
+    }
+
+    .panel-footer {
+      padding: 0.75rem;
     }
   }
 

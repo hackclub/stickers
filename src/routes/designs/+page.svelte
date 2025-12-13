@@ -73,7 +73,7 @@
   .content-row {
     display: flex;
     gap: 1.5rem;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     align-items: stretch;
   }
 
@@ -188,5 +188,46 @@
 
   .out-of-stock {
     color: #cc0000;
+  }
+
+  @media (max-width: 768px) {
+    h1 {
+      font-size: 2rem;
+    }
+
+    .content-row {
+      flex-direction: column;
+    }
+
+    p {
+      font-size: 1rem;
+      white-space: normal;
+    }
+
+    .card {
+      padding: 1rem;
+    }
+
+    .filter-card label {
+      font-size: 1rem;
+    }
+
+    .upload-btn {
+      font-size: 1.1rem;
+      width: 100%;
+    }
+
+    .table-container {
+      overflow-x: auto;
+    }
+
+    table {
+      font-size: 0.85rem;
+      min-width: 600px;
+    }
+
+    th, td {
+      padding: 0.5rem;
+    }
   }
 </style>

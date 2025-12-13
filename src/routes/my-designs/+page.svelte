@@ -3,11 +3,16 @@
   import resizeIcon from '$lib/assets/images/resize.jpg';
   import LazyImage from '$lib/components/LazyImage.svelte';
 
+  /** @typedef {{ id: string, name: string, cdn_url: string, status?: string, submitted_at?: string, votes?: number }} MyDesign */
+
   let showModal = $state(false);
+  /** @type {MyDesign | null} */
   let selectedDesign = $state(null);
   let showUploadModal = $state(false);
+  /** @type {MyDesign[]} */
   let myDesigns = $state([]);
   let loading = $state(true);
+  /** @type {string | null} */
   let error = $state(null);
   let uploadUrl = $state('');
   let uploadName = $state('');
@@ -24,7 +29,7 @@
       if (!res.ok) throw new Error('Failed to fetch designs');
       myDesigns = await res.json();
     } catch (e) {
-      error = e.message;
+      error = e instanceof Error ? e.message : 'Unknown error';
     } finally {
       loading = false;
     }
@@ -50,12 +55,13 @@
       uploadName = '';
       await fetchDesigns();
     } catch (e) {
-      alert('Error: ' + e.message);
+      alert('Error: ' + (e instanceof Error ? e.message : 'Unknown error'));
     } finally {
       submitting = false;
     }
   }
 
+  /** @param {MyDesign} design */
   function openModal(design) {
     selectedDesign = design;
     showModal = true;
@@ -203,6 +209,47 @@
 
     .upload-btn {
       width: 100%;
+    }
+  }
+
+  @media (max-width: 768px) {
+    h1 {
+      font-size: 2rem;
+    }
+
+    p {
+      font-size: 1rem;
+    }
+
+    .card {
+      padding: 1rem;
+    }
+
+    .upload-btn {
+      font-size: 1.1rem;
+    }
+
+    .table-container {
+      overflow-x: auto;
+    }
+
+    table {
+      font-size: 0.9rem;
+      min-width: 500px;
+    }
+
+    th, td {
+      padding: 0.5rem;
+    }
+
+    .design-thumb {
+      width: 50px;
+      height: 50px;
+    }
+
+    .resize-btn img {
+      width: 24px;
+      height: 24px;
     }
   }
 

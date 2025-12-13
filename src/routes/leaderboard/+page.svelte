@@ -112,7 +112,7 @@
   }
 
   .info-card {
-    flex: 1 1 300px;
+    flex: 0 0 auto;
   }
 
   .filter-card {
@@ -144,8 +144,32 @@
   }
 
   @media (max-width: 768px) {
+    h1 {
+      font-size: 2rem;
+    }
+
     .content-row {
       flex-direction: column;
+    }
+
+    p {
+      font-size: 1rem;
+    }
+
+    .card {
+      padding: 1rem;
+    }
+
+    .filter-card label {
+      font-size: 1rem;
+    }
+
+    table {
+      font-size: 0.9rem;
+    }
+
+    th, td {
+      padding: 0.5rem;
     }
   }
 

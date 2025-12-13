@@ -2,9 +2,14 @@
   import { onMount } from 'svelte';
   import LazyImage from '$lib/components/LazyImage.svelte';
 
+  /** @typedef {{ id: string, name: string, cdn_url: string, votes: number, voted?: boolean }} Design */
+
+  /** @type {Design[]} */
   let designs = $state([]);
   let loading = $state(true);
+  /** @type {string | null} */
   let error = $state(null);
+  /** @type {string | null} */
   let votingId = $state(null);
 
   onMount(async () => {
@@ -13,12 +18,13 @@
       if (!res.ok) throw new Error('Failed to fetch designs');
       designs = await res.json();
     } catch (e) {
-      error = e.message;
+      error = e instanceof Error ? e.message : 'Unknown error';
     } finally {
       loading = false;
     }
   });
 
+  /** @param {Design} design */
   async function toggleVote(design) {
     if (votingId) return;
     votingId = design.id;
@@ -37,7 +43,7 @@
           : d
       );
     } catch (e) {
-      alert('Error: ' + e.message);
+      alert('Error: ' + (e instanceof Error ? e.message : 'Unknown error'));
     } finally {
       votingId = null;
     }
@@ -255,12 +261,45 @@
   }
 
   @media (max-width: 768px) {
+    h1 {
+      font-size: 2rem;
+    }
+
     .content-row {
       flex-direction: column;
     }
 
     .info-card {
       flex: 0 0 auto;
+    }
+
+    .info-card p {
+      font-size: 1rem;
+    }
+
+    .card {
+      padding: 1rem;
+    }
+
+    .votes-count {
+      font-size: 1rem;
+    }
+
+    .designs-grid {
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 1rem;
+    }
+
+    .design-image {
+      height: 150px;
+    }
+
+    .design-name {
+      font-size: 1rem;
+    }
+
+    .design-footer {
+      padding: 0.75rem;
     }
   }
 </style>
