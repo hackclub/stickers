@@ -70,7 +70,7 @@
 
 <div class="content-row">
   <div class="card info-card">
-    <p>Submit a sticker design, after approval it will go into the shop and you can be paid per sticker order</p>
+    <p>Submit a sticker design, after approval it will go into the shop where you can be paid per sticker order (after reaching a small threshold)</p>
   </div>
 
   <button class="card upload-btn" onclick={() => showUploadModal = true}>+ Upload a design</button>
@@ -141,7 +141,7 @@
       </div>
       <div class="form-group">
         <label for="design-name">Name of sticker (optional)</label>
-        <input type="text" id="design-name" bind:value={uploadName} placeholder="My Cool Sticker" />
+        <input type="text" id="design-name" bind:value={uploadName} placeholder="Heidpheus" />
       </div>
       <button class="submit-btn" onclick={submitDesign} disabled={submitting || !uploadUrl.trim()}>
         {submitting ? 'Submitting...' : 'Submit Design'}
