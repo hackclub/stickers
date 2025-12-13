@@ -1,9 +1,9 @@
 <script>
-  import { onMount } from 'svelte';
-  import LazyImage from '$lib/components/LazyImage.svelte';
+  import { onMount } from "svelte";
+  import LazyImage from "$lib/components/LazyImage.svelte";
 
-  let selectedFilter = $state('all');
-  let searchQuery = $state('');
+  let selectedFilter = $state("all");
+  let searchQuery = $state("");
   let selectedSticker = $state(null);
   let stickers = $state([]);
   let loading = $state(true);
@@ -11,10 +11,10 @@
 
   onMount(async () => {
     try {
-      const res = await fetch('/api/stickers');
-      if (!res.ok) throw new Error('Failed to fetch stickers');
+      const res = await fetch("/api/stickers");
+      if (!res.ok) throw new Error("Failed to fetch stickers");
       stickers = await res.json();
-      const ownedCount = stickers.filter(s => s.owned).length
+      const ownedCount = stickers.filter((s) => s.owned).length;
       //TODO: this is slow asf, we can use a ledger maybe
     } catch (e) {
       error = e.message;
@@ -24,12 +24,14 @@
   });
 
   const filteredDesigns = $derived(
-    stickers.filter(d => {
-      const matchesSearch = searchQuery === '' || 
-        (d.name?.toLowerCase().includes(searchQuery.toLowerCase()));
-      
-      const matchesFilter = selectedFilter === 'all' || (d.tags && d.tags.includes(selectedFilter));
-      
+    stickers.filter((d) => {
+      const matchesSearch =
+        searchQuery === "" ||
+        d.name?.toLowerCase().includes(searchQuery.toLowerCase());
+
+      const matchesFilter =
+        selectedFilter === "all" || (d.tags && d.tags.includes(selectedFilter));
+
       return matchesSearch && matchesFilter;
     })
   );
@@ -43,7 +45,7 @@
   }
 
   function handleKeydown(e) {
-    if (e.key === 'Escape' && selectedSticker) {
+    if (e.key === "Escape" && selectedSticker) {
       closeModal();
     }
   }
@@ -66,9 +68,9 @@
   </div>
 
   <div class="card search-card">
-    <input 
-      type="text" 
-      placeholder="Search designs..." 
+    <input
+      type="text"
+      placeholder="Search designs..."
       bind:value={searchQuery}
     />
   </div>
@@ -80,12 +82,12 @@
   <div class="error">Error: {error}</div>
 {:else}
   <div class="paper-background">
-    <h2 class="paper-title"><br>All our beautiful stickers: </h2>
+    <h2 class="paper-title"><br />All our beautiful stickers:</h2>
     <div class="stickers-scatter">
       {#each filteredDesigns as design, i}
-        <div 
+        <div
           class="sticker-item"
-          style="--rotation: {(i * 17) % 30 - 15}deg"
+          style="--rotation: {((i * 17) % 30) - 15}deg"
           onclick={() => openModal(design)}
         >
           <div class="sticker-image">
@@ -95,11 +97,14 @@
         </div>
       {/each}
     </div>
+    <p class="paper-footer">
+      {#if filteredDesigns.length === 0}
+        I don't have that one yet, DM @euanripper if you have a missing design
+      {:else}
+        I can't find the rest, but maybe you can help, DM @euanripper if you have missing designs
+      {/if}
+    </p>
   </div>
-
-  {#if filteredDesigns.length === 0}
-    <div class="no-results">No stickers found</div>
-  {/if}
 {/if}
 
 {#if selectedSticker}
@@ -113,10 +118,12 @@
         <h2>{selectedSticker.name}</h2>
         <div class="modal-info">
           {#each Object.entries(selectedSticker) as [key, value]}
-            {#if key !== 'image' && key !== 'owned_by' && key !== 'owned' && key !== 'id'}
+            {#if key !== "image" && key !== "owned_by" && key !== "owned" && key !== "id"}
               <div class="info-row">
                 <span class="info-key">{key}:</span>
-                <span class="info-value">{Array.isArray(value) ? value.join(', ') : value}</span>
+                <span class="info-value"
+                  >{Array.isArray(value) ? value.join(", ") : value}</span
+                >
               </div>
             {/if}
           {/each}
@@ -128,8 +135,8 @@
 
 <style>
   @font-face {
-    font-family: 'GeraldScript';
-    src: url('$lib/assets/fonts/GeraldScript.otf') format('opentype');
+    font-family: "GeraldScript";
+    src: url("$lib/assets/fonts/GeraldScript.otf") format("opentype");
     font-weight: normal;
     font-style: normal;
     font-display: swap;
@@ -213,7 +220,8 @@
     padding: 0 0.2rem;
   }
 
-  .loading, .error {
+  .loading,
+  .error {
     text-align: center;
     padding: 3rem;
     background: rgba(255, 255, 255, 0.95);
@@ -227,28 +235,43 @@
   }
 
   .paper-background {
-    background: 
-      linear-gradient(to right, transparent 0px, transparent 40px, #e8b4b8 40px, #e8b4b8 41px, transparent 41px),
-      linear-gradient(to bottom, #faf8f5 0px, #faf8f5 62px, #6b8cae 62px, #bed8f3 66px, transparent 66px),
+    background-color: #faf8f5;
+    background-image: linear-gradient(
+        to right,
+        transparent 0px,
+        transparent 40px,
+        #e8b4b8 40px,
+        #e8b4b8 41px,
+        transparent 41px
+      ),
+      linear-gradient(
+        to bottom,
+        transparent 0px,
+        transparent 62px,
+        #6b8cae 62px,
+        #6b8cae 66px,
+        transparent 66px
+      ),
       repeating-linear-gradient(
         to bottom,
         transparent 0px,
         transparent 31px,
         #c8d4e0 31px,
         #c8d4e0 32px
-      ),
-      linear-gradient(to bottom, #faf8f5, #f5f0e8);
+      );
+    background-size: 100% 100%, 100% 100%, 100% 32px;
+    background-repeat: repeat-y, no-repeat, repeat;
     border: 2px solid #333;
     border-radius: 0.5rem;
     padding: 0.5rem 2rem 2rem 50px;
     min-height: 60vh;
-    box-shadow: 
+    box-shadow:
       inset 0 0 30px rgba(0, 0, 0, 0.03),
       0 2px 8px rgba(0, 0, 0, 0.1);
   }
 
   .paper-title {
-    font-family: 'GeraldScript', cursive;
+    font-family: "GeraldScript", cursive;
     text-align: left;
     font-size: 2rem;
     line-height: 28px;
@@ -262,6 +285,17 @@
     gap: 3rem;
     justify-content: center;
     align-items: flex-start;
+  }
+
+  .paper-footer {
+    font-family: "GeraldScript", cursive;
+    text-align: center;
+    font-size: 2rem;
+    line-height: 32px;
+    margin: 3rem 0 0 0;
+    padding-bottom: 6px;
+
+    color: #333;
   }
 
   .sticker-item {

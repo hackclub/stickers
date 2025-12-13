@@ -11,7 +11,7 @@
 
 <nav class="navbar">
   <a class="navbar-brand" href="/dash">
-    <img src={hackClubLogo} alt="Hack Club Logo" />
+    <img src={hackClubLogo} alt="Hack Club Logo" draggable="false"/>
   </a>
   
   <button class="navbar-toggler" onclick={toggleMenu} aria-label="Toggle navigation">
@@ -22,6 +22,9 @@
 
   <div class="navbar-collapse" class:open={menuOpen}>
     <ul class="navbar-nav">
+      <li class="nav-item" class:active={active === 'dash'}>
+        <a class="nav-link" href="/dash">|Dashboard ⠀</a>
+      </li>
       <li class="nav-item" class:active={active === 'earn'}>
         <a class="nav-link" href="/earn">|Get ⠀</a>
       </li>
@@ -37,6 +40,7 @@
       <li class="nav-item" class:active={active === 'vote'}>
         <a class="nav-link" href="/vote">|Vote ⠀</a>
       </li>
+
       <!-- <li class="nav-item" class:active={active === 'trade'}>
         <a class="nav-link disabled">|Trade (soon)</a>
       </li>-->
@@ -59,7 +63,15 @@
   }
 
   .navbar-brand img {
-    height: 50px;
+    height: 70px;
+    width: auto;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    pointer-events: none;
+    -webkit-user-drag: none;
+    -webkit-touch-callout: none;
   }
 
   .navbar-toggler {
