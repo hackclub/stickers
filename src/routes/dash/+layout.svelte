@@ -35,6 +35,18 @@
     border-radius: 20px;
     overflow: hidden;
   }
+
+  @media (max-width: 768px) {
+    :global(body) {
+      overflow: auto;
+    }
+
+    .page-content {
+      height: auto;
+      overflow: visible;
+      padding: 1rem;
+    }
+  }
   .site-footer {
     background: #000;
     color: #fff;
