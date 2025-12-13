@@ -306,6 +306,15 @@
     cursor: pointer;
   }
 
+  .sticker-image :global(img) {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-user-drag: none;
+    -webkit-touch-callout: none;
+  }
+
   .sticker-image {
     width: 200px;
     height: 200px;
@@ -317,7 +326,7 @@
   }
 
   .sticker-item:hover .sticker-image {
-    transform: rotate(var(--rotation, 0deg)) scale(1.075);
+    transform: rotate(var(--rotation, 0deg)) scale(1.05);
   }
 
   .sticker-image :global(img) {

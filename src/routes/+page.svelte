@@ -19,7 +19,7 @@
   <div class="content-container">
     
     <h1><u>Hack Club Stickers</u></h1>
-    <p>Get sticky! Every Hack Clubber gets free stickers, and can code or trade to earn a collection.</p>
+    <p>Every Hack Clubber gets free high quality stickers, and can code or trade to earn a collection.</p>
 
     <Peelable 
       class="login-sticker"
