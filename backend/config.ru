@@ -40,7 +40,7 @@ use OmniAuth::Builder do
              host: 'auth.hackclub.com',
              scheme: 'https'
            },
-           scope: %i[openid email profile name address]
+           scope: %i[openid email profile name]
 end
 
 run lambda { |env|
