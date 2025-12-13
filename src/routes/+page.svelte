@@ -12,9 +12,9 @@
 
 <div class="page-wrapper">
   
-
+  <img src={Logo} alt="Hack Club Stickers" class="hero-logo" title="Logo by Charlie @Dumbhog" />
   <div class="content-container">
-    <img src={Logo} alt="Hack Club Stickers" class="hero-logo" title="Logo by Charlie @Dumbhog" />
+    
     <h1><u>Hack Club Stickers</u></h1>
     <p>Get sticky! Every Hack Clubber gets free stickers, and can code or trade to earn a collection.</p>
 
@@ -56,7 +56,7 @@
 
   :global(html, body) {
     overflow: hidden;
-    height: 100%;
+    height: 100%; 
     margin: 0;
     padding: 0;
   }
@@ -73,8 +73,7 @@
   }
 
   .hero-logo {
-    max-width: 500px;
-    width: 55%;
+    width: clamp(180px, 20vw, 300px);
     height: auto;
     margin-bottom: 2rem;
   }
@@ -88,11 +87,16 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
-    max-width: 600px;
+    max-width: 440px;
   }
 
   p {
-    font-size: 1.5rem;
+    font-size: clamp(1rem, 3.5vw, 1.5rem);
+    margin: 0 0 1rem 0;
+  }
+
+  .content-container h1 {
+    font-size: clamp(1.5rem, 6vw, 2.5rem);
     margin: 0 0 1rem 0;
   }
 
@@ -102,7 +106,7 @@
   }
   :global(.login-sticker) {
     width: clamp(150px, 20vw, 300px);
-    height: clamp(45px, 6vw, 80px);
+    min-height: clamp(45px, 6vw, 80px);
     margin: 1rem 0;
     cursor: pointer;
   }
@@ -118,7 +122,11 @@
     color: white;
     font-family: 'Departure Mono', monospace;
     font-weight: 400;
-    font-size: 2rem;
+    font-size: clamp(1.2rem, 4vw, 2rem);
+    padding: 0.5rem;
+    box-sizing: border-box;
+    word-break: break-word;
+    text-align: center;
   }
 
   .sticker-back {
