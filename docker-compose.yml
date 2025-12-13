@@ -1,14 +1,11 @@
 services:
   backend:
+    build: ./backend
+    ports:
+      - "9292:9292"
     env_file:
       - path: ./backend/.env
         required: false
-    build:
-      context: .
-      dockerfile: Dockerfile
-      target: backend
-    expose:
-      - "9292"
     environment:
       - SESSION_SECRET
       - OIDC_ISSUER
@@ -23,12 +20,9 @@ services:
       - FRONTEND_URL=${FRONTEND_URL:-http://localhost:5173}
 
   frontend:
-    build:
-      context: .
-      dockerfile: Dockerfile
-      target: frontend
-    expose:
-      - "3000"
+    build: .
+    ports:
+      - "3000:3000"
     environment:
       - ORIGIN=${ORIGIN:-http://localhost:5173}
       - BACKEND_URL=http://backend:9292

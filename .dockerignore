@@ -1,9 +1,11 @@
 node_modules
 .svelte-kit
 build
+app
 .env
 .env.*
 !.env.example
 .git
 *.log
+backend
 

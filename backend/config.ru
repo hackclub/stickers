@@ -6,19 +6,8 @@ Dotenv.load
 require_relative 'boot'
 require 'grape'
 require 'rack/session'
-require 'rack/cors'
 require 'omniauth'
 require 'omniauth_openid_connect'
-
-use Rack::Cors do
-  allow do
-    origins ENV.fetch('FRONTEND_URL', 'http://localhost:5173')
-    resource '*',
-      headers: :any,
-      methods: [:get, :post, :put, :patch, :delete, :options, :head],
-      credentials: true
-  end
-end
 
 use Rack::Session::Cookie,
     key: 'stickers.session',
