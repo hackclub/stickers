@@ -106,9 +106,9 @@
     </div>
     <p class="paper-footer">
       {#if filteredDesigns.length === 0}
-        I don't have that one yet, DM @euanripper if you have a missing design
+        I don't have that one yet, maybe you can help me <a href="https://forms.hackclub.com/archive" class="archive-link">archive designs</a>
       {:else}
-        I can't find the rest, but maybe you can help, DM @euanripper if you have missing designs
+        I can't find the rest, but maybe you can help me <a href="https://forms.hackclub.com/archive" class="archive-link">archive designs</a>
       {/if}
     </p>
   </div>
@@ -195,7 +195,15 @@
     background: rgba(250, 248, 245, 0.95);
     cursor: pointer;
   }
-
+  .archive-link {
+    font-family: "GeraldScript", cursive;
+    text-align: center;
+    font-size: 2rem;
+    line-height: 32px;
+    color: 000000;
+    margin: 3rem 0 0 0;
+    padding-bottom: 6px;
+  }
   .search-card {
     flex: 1 1 200px;
     background-color: #d9c9b6;
@@ -472,6 +480,7 @@
   .modal-footer h2 {
     margin: 0 0 1rem 0;
     font-size: 1.75rem;
+    font-family: 'Departure Mono', monospace;
   }
 
   .modal-info {

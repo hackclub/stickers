@@ -46,6 +46,9 @@
 
     <footer><a href="https://hackclub.com/privacy-and-terms/" target="_blank" rel="noopener noreferrer">Privacy and Terms</a></footer>
   </div>
+<footer class="site-footer">
+  <b>THIS SITE IS UNDER CONSTRUCTION</b>
+</footer>
 </div>
 
 <style>
@@ -163,5 +166,12 @@
     font-size: 1rem;
     color: #666;
     margin-top: 1rem;
+  }
+  .site-footer {
+    background: #000000;
+    color: #ff0000;
+    text-align: center;
+    padding: 1rem;
+    font-size: 2rem;
   }
 </style>
