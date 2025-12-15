@@ -44,7 +44,7 @@
 </div>
 
 <style>
-  :global(body) {
+  :global(html, body) {
     overflow: auto;
   }
 
