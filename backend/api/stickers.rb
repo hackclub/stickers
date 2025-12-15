@@ -16,6 +16,7 @@ class Stickers < Base
           image: record["CDN_URL"],
           artist: record["Artist"],
           event: record["Event"],
+          event_URL: record["event_URL"],
           owned_by: owned_by,
           owned: user_id && owners.include?(user_id) 
         }
@@ -30,9 +31,10 @@ class Stickers < Base
         {
           id: record.id,
           name: record["Sticker Name"],
-          image: record["CDNURL"],
+          image: record["CDN_URL"],
           artist: record["Artist"],
-          event: record["Event"]
+          event: record["Event"],
+          event_URL: record["event_URL"]
         }
       end
     end

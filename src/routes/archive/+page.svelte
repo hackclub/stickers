@@ -2,7 +2,7 @@
   import { onMount } from "svelte";
   import LazyImage from "$lib/components/LazyImage.svelte";
 
-  /** @typedef {{ id: string, name: string, image: string, owned?: boolean, tags?: string[] }} Sticker */
+  /** @typedef {{ id: string, name: string, image: string, owned?: boolean, tags?: string[], event_URL?: string }} Sticker */
 
   let selectedFilter = $state("all");
   let searchQuery = $state("");
@@ -120,10 +120,15 @@
         <LazyImage src={selectedSticker.image} alt={selectedSticker.name} />
       </div>
       <div class="modal-footer">
-        <h2>{selectedSticker.name}</h2>
+        <div class="modal-header-row">
+          {#if selectedSticker.event_URL}
+            <a href={selectedSticker.event_URL.startsWith('http') ? selectedSticker.event_URL : `https://${selectedSticker.event_URL}`} target="_blank" rel="noopener noreferrer" class="event-btn">Go To Event</a>
+          {/if}
+          <h2>{selectedSticker.name}</h2>
+        </div>
         <div class="modal-info">
           {#each Object.entries(selectedSticker) as [key, value]}
-            {#if key !== "image" && key !== "owned_by" && key !== "owned" && key !== "id"}
+            {#if key !== "image" && key !== "owned_by" && key !== "owned" && key !== "id" && key !== "event_URL" && key !== "name"}
               <div class="info-row">
                 <span class="info-key">{key}:</span>
                 <span class="info-value"
@@ -474,12 +479,42 @@
   .modal-footer {
     padding: 1.5rem;
     border-top: 2px solid #333;
+    text-align: left;
+  }
+
+  .modal-header-row {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
   }
 
   .modal-footer h2 {
-    margin: 0 0 1rem 0;
+    margin: 0;
     font-size: 1.75rem;
     font-family: 'Departure Mono', monospace;
+  }
+
+  .modal-info {
+    margin-top: 1rem;
+  }
+
+  .event-btn {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background: #ec3750;
+    color: white;
+    text-decoration: none;
+    border-radius: 0.5rem;
+    font-family: 'Departure Mono', monospace;
+    font-size: 0.9rem;
+    white-space: nowrap;
+    border: 2px solid #c42d42;
+  }
+
+  .event-btn:hover {
+    background: #c42d42;
   }
 
   .modal-info {
