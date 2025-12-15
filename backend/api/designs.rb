@@ -16,7 +16,7 @@ class DesignsTable < AirctiveRecord::Base
 end
 
 class Designs < Base
-  DESIGN_ALLOWED_FIELDS = %w[Name Description Image_URL].freeze
+  DESIGN_ALLOWED_FIELDS = %w[Name Description Image_URL CDN_URL].freeze
 
   resource :designs do
     get :all do
