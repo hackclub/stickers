@@ -1,33 +1,19 @@
 # frozen_string_literal: true
 
-class Shop < Base
+class Shop < Grape::API
+  format :json
   helpers SessionHelpers
 
   resource :shop do
     get do
-      records = ShopTable.all
-      records.map do |record|
-        {
-          id: record.id,
-          name: record["Name"],
-          image: record["CDN_URL"],
-          price: record["Cost"],
-          description: record["Description"]
-        }
-      end
+      ShopRecord.all.map(&:as_json)
     end
 
     route_param :id, type: String do
       get do
-        record = ShopTable.find(params[:id])
+        record = ShopRecord.find(params[:id])
         error!('not found', 404) unless record
-        {
-          id: record.id,
-          name: record["Name"],
-          image: record["CDN_URL"],
-          price: record["cost"],
-          description: record["Description"]
-        }
+        record.as_json
       end
     end
   end
