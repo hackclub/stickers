@@ -11,12 +11,7 @@ class Auth < Grape::API
 
     get 'oidc/callback' do
       auth = env['omniauth.auth']
-      session[:user] = {
-        id: auth.uid,
-        email: auth.info.email,
-        name: auth.info.name,
-        slack_id: auth.info.slack_id
-      }
+      session[:user] = User.from_omniauth(auth).to_h
       redirect ENV.fetch('AUTH_SUCCESS_REDIRECT', '/')
     end
 
@@ -27,7 +22,7 @@ class Auth < Grape::API
 
     get :me do
       error!('Unauthorized', 401) unless current_user
-      current_user
+      current_user.to_h
     end
   end
 end
