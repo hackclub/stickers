@@ -297,11 +297,12 @@
     gap: 0.5rem;
   }
 
-  .design-thumb {
+  .design-cell :global(.design-thumb) {
     width: 80px;
     height: 80px;
-    object-fit: contain;
+    object-fit: cover;
     border-radius: 0.25rem;
+    flex-shrink: 0;
   }
 
   .resize-btn {
